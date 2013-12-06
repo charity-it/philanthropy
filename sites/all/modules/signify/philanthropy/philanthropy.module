@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Custom behaviours for Philanthropy New Zealand
+ */
+
+/**
+ * Computed field code
+ */
+// Create a field for a nice 'keyword search' for resource types 
+// by using a computed field to hold content of title and body fields
+function computed_field_field_resource_keyword_compute($node, $field, &$node_field) {
+  $node_field[0]['value'] = $node->title . $node->body;
+}
+

@@ -1,0 +1,7 @@
+; $Id: $
+
+name = philanthropy_views Export Module
+description = Exports some views of philanthropy_views
+dependencies[] = views
+core = 6.x
+package = Signify authored modules

@@ -1,0 +1,276 @@
+<?php
+/**
+ * @file
+ *   Installation and run-time requirements and checks
+ *   for Mailblock.
+ */
+
+
+/**
+ * Implementation of hook_uninstall().
+ *
+ * Required to enable automatic uninstall behaviours,
+ * even when there are no custom uninstall behaviours
+ * to implement.
+ */
+function mailblock_uninstall() {
+  variable_del('mailblock_disabled');
+  variable_del('mailblock_active');
+  variable_del('mailblock_recipient');
+  variable_del('mailblock_whitelist');
+  variable_del('mailblock_force');
+  variable_del('mailblock_deliver_to_site_domain');
+  variable_del('mailblock_live_site');
+  variable_del('mailblock_safe_files');
+}
+
+
+/**
+ * Implementation of hook_requirements().
+ */
+function mailblock_requirements($phase) {
+  // Do nothing if Mailblock is enabled, but not activated.
+  // At install time, we want to run the checks, but we'll flag
+  // errors as warnings to allow installation to succeed.
+  if ($phase == 'runtime' && !mailblock_is_active()) {
+    return;
+    // n.b. mailblock_is_active() may not exist at 'install'
+    // (but obviously that's fine in this instance).
+  }
+  $requirements = array();
+  $t = get_t(); // Ensure translations don't break at install time
+
+  // Find all non-core PHP files (look under the /sites directory)
+  $files = array('whitelist' => array(), 'unsafe' => array());
+  $whitelist = array_flip(preg_split('/[\r\n]+/', variable_get('mailblock_safe_files', '')));
+
+  // Provide a PHP4-compatible version of php_strip_whitespace() if necessary.
+  if (version_compare(phpversion(), '5', '>=')) {
+    $php_strip_whitespace = 'php_strip_whitespace';
+  }
+  else {
+    $php_strip_whitespace = 'php4_strip_whitespace';
+  }
+
+  foreach (mailblock_find_files('sites') as $file) {
+    if (array_key_exists($file, $whitelist)) {
+      $files['whitelist'][] = $file;
+    }
+    else {
+      $text = $php_strip_whitespace($file); // n.b. also strips comments!
+      if (preg_match('/\bmail\(/', $text)) {
+        $files['unsafe'][] = $file;
+      }
+    }
+  }
+
+  if (!$files['whitelist'] && !$files['unsafe']) {
+    $requirements['mailblock_php_mail_function'] = array(
+      'title'       => $t("Mailblock"),
+      'value'       => $t("No non-core PHP mail" . "()" . " function calls found."),
+      'severity'    => REQUIREMENT_OK,
+    );
+  }
+  else {
+    if ($files['whitelist']) {
+      $substitutions = mailblock_requirements_substitutions(count($files['whitelist']));
+      $requirements['mailblock_php_mail_function_whitelist'] = array(
+        'title'       => $t("Mailblock"),
+        'description' => $t("The PHP mail" . "()" . " function was found in the above @files, but its usage has been marked as safe in the !settings_page.", $substitutions),
+        'value'       => theme('item_list', $files['whitelist']),
+        'severity'    => REQUIREMENT_INFO,
+      );
+    }
+    if ($files['unsafe']) {
+      $substitutions = mailblock_requirements_substitutions(count($files['unsafe']));
+      $requirements['mailblock_php_mail_function_unsafe'] = array(
+        'title'       => $t("Mailblock"),
+        'description' => $t("The PHP mail" . "()" . " function is called in the above @files. Mailblock might not be able to catch all outgoing messages. If @these @files @are safe, please add @them to the Safe Files list in the !settings_page.", $substitutions),
+        'value'       => theme('item_list', $files['unsafe']),
+        'severity'    => ($phase == 'install') ? REQUIREMENT_WARNING : REQUIREMENT_ERROR,
+      );
+    }
+  }
+
+  // Check whether the site is live. Mailblock should not be left
+  // active on a live site (although it might be temporarily set
+  // for testing purposes).
+  $mailblock_live_site = variable_get('mailblock_live_site', 'default');
+  $live_sites = array();
+  foreach (explode(',', $mailblock_live_site) as $site) {
+    if ($site = trim($site)) {
+      $site = preg_replace('|^(sites/)?|', 'sites/', $site);
+      $live_sites[$site] = TRUE;
+    }
+  }
+  if (array_key_exists(conf_path(), $live_sites)) {
+    $requirements['mailblock_active_on_live_site'] = array(
+      'title'       => $t("Mailblock"),
+      'value'       => $t("Mailblock is active on a live site (@conf). Visit the !settings page to deactivate mailblock.", array('@conf' => conf_path(), '!settings' => l("settings", "admin/settings/mailblock"))),
+      'severity'    => ($phase == 'install') ? REQUIREMENT_WARNING : REQUIREMENT_ERROR,
+    );
+  }
+
+  // In the 'install' phase we don't actually want to block installation
+  // of this module. REQUIREMENT_WARNING does not generate a drupal_set_message()
+  // on installation, and REQUIREMENT_ERROR (which does) blocks the install,
+  // so generate our own warning messages here.
+  if ($phase == 'install') {
+    foreach ($requirements as $requirement) {
+      if ($requirement['severity'] === REQUIREMENT_WARNING) {
+        $message = "";
+        $message .= !empty($requirement['value']) ? $requirement['value'] : "";
+        $message .= !empty($requirement['description']) ? $requirement['description'] : "";
+        if ($message) {
+          drupal_set_message($message, 'warning');
+        }
+      }
+    }
+  }
+  return $requirements;
+}
+
+
+/**
+ * Singular/plural substitutions for hook_requirements() messages.
+ */
+function mailblock_requirements_substitutions($count) {
+  $substitutions = array(
+    '@these' => format_plural($count, 'this', 'these'),
+    '@files' => format_plural($count, 'file', 'files'),
+    '@are'   => format_plural($count, 'is', 'are'),
+    '@them'  => format_plural($count, 'it', 'them'),
+    '!settings_page' => l("Mailblock settings", 'admin/settings/mailblock'),
+  );
+  return $substitutions;
+}
+
+
+/**
+ * A recursive scan_dir()
+ * See: http://www.php.net/manual/en/function.scandir.php
+ *
+ * scan_dir() requires PHP 5. php4_scandir() is defined for backwards
+ * compatibility (same parameters & behaviour).
+ */
+function mailblock_find_files($root_dir, $all_data = array()) {
+  // Enable PHP4-compatible version of scandir()
+  if (version_compare(phpversion(), '5', '>=')) {
+    $scandir = 'scandir';
+  }
+  else {
+    $scandir = 'php4_scandir';
+  }
+
+  // only include files with these extensions
+  $allow_extensions = array("module", "inc", "php");
+  // list any specific files you wish to be excluded
+  $ignore_files = array();
+  $ignore_regex = '/^_/';
+  // skip these directories
+  $ignore_dirs = array(".", "..");
+
+  // run through content of root directory
+  $dir_content = $scandir($root_dir);
+  foreach ($dir_content as $key => $content) {
+    $path = $root_dir . '/' . $content;
+    if (is_file($path) && is_readable($path)) {
+      // skip ignored files
+      if (!in_array($content, $ignore_files)) {
+        if (preg_match($ignore_regex, $content) == 0) {
+          $content_chunks = explode(".", $content);
+          $ext = $content_chunks[count($content_chunks) - 1];
+          // only include files with desired extensions
+          if (in_array($ext, $allow_extensions)) {
+              // save file name with path
+              $all_data[] = $path;
+          }
+        }
+      }
+    }
+    // if content is a directory and readable, add path and name
+    elseif (is_dir($path) && is_readable($path)) {
+      // skip any ignored dirs
+      if (!in_array($content, $ignore_dirs)) {
+        // recursive callback to open new directory
+        $all_data = mailblock_find_files($path, $all_data);
+      }
+    }
+  }
+
+  return $all_data;
+}
+
+
+/**
+ * A php4 compatable scan_dir()
+ * See: http://www.php.net/manual/en/function.scandir.php
+ */
+function php4_scandir($directory, $sorting_order = 0){
+  $dh  = opendir($directory);
+  while (FALSE !== ($filename = readdir($dh))) {
+    $files[] = $filename;
+  }
+
+  if ($sorting_order === 0) {
+    sort($files);
+  }
+  else {
+    rsort($files);
+  }
+  return $files;
+}
+
+
+/**
+ * A php4 compatable php_strip_whitespace()
+ * See: http://php.net/manual/en/function.php-strip-whitespace.php#77624
+ */
+
+if (!defined ('T_ML_COMMENT')) {
+  define ('T_ML_COMMENT', T_COMMENT);
+}
+if (!defined ('T_DOC_COMMENT')) {
+  define ('T_DOC_COMMENT', T_ML_COMMENT);
+}
+
+function php4_strip_whitespace($filename) {
+  if (!is_file($filename)) {
+    return FALSE;
+  }
+  $content = file_get_contents($filename);
+
+  $tokens = token_get_all($content);
+
+  $last = FALSE;
+  $str = '';
+  for ($i = 0, $j = count($tokens); $i < $j; $i++) {
+    if (is_string($tokens[$i])) {
+      $last = FALSE;
+      $str .= $tokens[$i];
+    }
+    else {
+      switch ($tokens[$i][0]) {
+        case T_COMMENT:
+        case T_ML_COMMENT:
+        case T_DOC_COMMENT:
+          break;
+        case T_WHITESPACE:
+          if (!$last) {
+            $str .= ' ';
+            $last = TRUE;
+          }
+          break;
+        default:
+          $last = FALSE;
+          $str .= $tokens[$i][1];
+          break;
+      }
+    }
+  }
+
+  $str = trim($str);
+  $str = str_replace("\n", "", $str);
+  $str = str_replace("\r", "", $str);
+  return $str;
+}

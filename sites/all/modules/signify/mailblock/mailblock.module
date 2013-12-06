@@ -1,0 +1,428 @@
+<?php
+/**
+ * @file
+ *   Prevent the site from sending email to addresses other
+ *   than at the host domain, or in a specified address
+ *   white-list.
+ *
+ *   Domain-matching is fairly naive, but effective enough
+ *   for our purposes.
+ *
+ *   The mailblock module should ALWAYS be enabled in Drupal.
+ *   The 'Activate mailblock' option at admin/settings/mailblock
+ *   is then switched off to prevent it from having any effect on
+ *   a live site, while still protecting development and staging
+ *   sites from future database imports.
+ *
+ *   Non-live sites must set $conf['mailblock_active'] = TRUE;
+ *   in their settings.php to guarantee that importing a live
+ *   live database will not render the module inactive.
+ */
+
+
+/**
+ * Implementation of hook_mail_alter().
+ *
+ * Redirect any drupal_mail() which was not being directed
+ * to a "safe" address. Safe addresses are either white-listed,
+ * or are at a domain which is similar to the host domain:
+ *
+ * If the right-most n chars of the HTTP_HOST name do not
+ * match the right-most n chars of the recipient's domain,
+ * where n is the shorter of the two string lengths, then
+ * redirect the message to a pre-configured address.
+ */
+function mailblock_mail_alter(&$message) {
+  if (!mailblock_is_active()) {
+    return;
+  }
+  $message_headers = array();
+  $recipients = array();
+  $blocked = array();
+  $redirect = variable_get('mailblock_force', FALSE);
+
+  // Establish the mail headers to process (To, Cc, Bcc)
+  $message_headers['to'] = $message['to'];
+  if (array_key_exists('headers', $message)) {
+    foreach ($message['headers'] as $header => $value) {
+      if (in_array(strtolower($header), array('cc', 'bcc'), TRUE)) {
+        $message_headers[$header] = $value;
+      }
+    }
+  }
+  // Re-write as arrays of trimmed addresses
+  foreach ($message_headers as $header => $mailbox_list) {
+    $mailboxes = array();
+    foreach (explode(",", $mailbox_list) as $mailbox) {
+      $mailboxes[] = trim($mailbox);
+    }
+    $message_headers[$header] = $mailboxes;
+  }
+
+  if (!$redirect) {
+    // Establish white list of recipients to whom mail may be delivered.
+    $whitelist = array();
+    foreach (preg_split('/[\r\n]+/', variable_get('mailblock_whitelist', '')) as $mailbox) {
+      if ($mailbox = trim($mailbox)) {
+        $whitelist[$mailbox] = TRUE;
+      }
+    }
+
+    // Process all recipient lists to find blocked and permitted addresses.
+    foreach ($message_headers as $header => $mailboxes) {
+      $list = mailblock_process_mailbox_list($mailboxes, $whitelist);
+      $blocked[$header] = $list['blocked'];
+      $recipients[$header] = $list['permitted'];
+    }
+  }
+
+  if ($redirect or $blocked) {
+    $warnings = array();
+    foreach (array_keys($message_headers) as $header) {
+
+      // Modify the Cc and Bcc headers.
+      if (strtolower($header) != 'to') {
+        if ($redirect) {
+          unset($message['headers'][$header]);
+        }
+        else {
+          if ($recipients[$header]) {
+            $message['headers'][$header] = implode(",", array_keys($recipients[$header]));
+          }
+          else {
+            unset($message['headers'][$header]);
+          }
+        }
+      }
+
+      // Add warning
+      if ($mailboxes = $redirect ? $message_headers[$header] : $blocked[$header]) {
+        switch (strtolower($header)) {
+          case 'cc':
+            $header_description = format_plural(count($mailboxes), "carbon-copy recipient", "carbon-copy recipients");
+            break;
+          case 'bcc':
+            $header_description = format_plural(count($mailboxes), "blind-carbon-copy recipient", "blind-carbon-copy recipients");
+            break;
+          default:
+            $header_description = format_plural(count($mailboxes), "original recipient", "original recipients");
+            break;
+        }
+        $substitutions = array(
+          '@recipients' => $header_description,
+          '@mailboxes' => implode(', ', $mailboxes),
+        );
+        $warnings[] = t("Message redirected from @recipients (@mailboxes) by Mailblock module.", $substitutions);
+      }
+    }
+    $message['body'] = array_merge($warnings, (array) $message['body']);
+
+    // Send to the configured address(es), plus any addresses permitted
+    // by the white-list, or domain-matching. Cc and Bcc headers have
+    // already been processed.
+    $mailblock_recipient = variable_get('mailblock_recipient', variable_get('site_mail', ''));
+    foreach (preg_split('/[\r\n]+/', $mailblock_recipient) as $mailbox) {
+      if ($mailbox = trim($mailbox)) {
+        $recipients['to'][$mailbox] = TRUE;
+      }
+    }
+    $message['to'] = implode(',', array_keys($recipients['to'])); // even if empty
+  }
+}
+
+
+/**
+ * Process a list of mailboxes to determine which can be delivered to,
+ * and which need to be blocked.
+ *
+ * @param $mailbox_list
+ *   Array of mailboxes to process.
+ * @param $whitelist
+ *   Array of mailboxes we will permit messages to be sent to.
+ * @return
+ *   Array dividing the original $mailbox_list into two sets:
+ *   permitted, and blocked.
+ */
+function mailblock_process_mailbox_list($mailboxes, $whitelist) {
+  $recipients = array();
+  $blocked = array();
+
+  #mailparse_rfc822_parse_addresses($message['to']);
+  // See http://www.php.net/manual/en/book.mailparse.php
+  // Requires non-standard PECL extension.
+
+  // Otherwise, just recognise the most basic formats:
+  // user@domain
+  // User <user@domain>
+  // Not supporting: user@domain (User)
+  foreach ($mailboxes as $mailbox) {
+    if (array_key_exists($mailbox, $whitelist)) {
+      $recipients[$mailbox] = TRUE;
+    }
+    elseif (preg_match('/^(.+<)?(.+)@(.+?)>?$/', $mailbox, $match)) {
+      $addr_spec = $match[2] . '@' . $match[3];
+      if (array_key_exists($addr_spec, $whitelist)) {
+        $recipients[$mailbox] = TRUE;
+      }
+      else {
+        $recipients[$mailbox] = $addr_spec;
+      }
+    }
+    else {
+      $blocked[] = $mailbox; // Could not recognise the format
+    }
+  }
+
+  // Compare domains.
+  $deliver_to_site_domain = variable_get('mailblock_deliver_to_site_domain', FALSE);
+  $host = preg_replace('/^[a-z]+:\/\//', '', $_SERVER['HTTP_HOST']);
+  foreach ($recipients as $mailbox => $addr_spec) {
+    if ($addr_spec === TRUE) {
+      continue; // Ignore white-listed mailboxes.
+    }
+    elseif ($deliver_to_site_domain) {
+      // Allow delivery if the mailbox domain is similar to the
+      // site's own domain.
+      list($user, $domain) = explode("@", $addr_spec);
+
+      $length = min(strlen($host), strlen($domain));
+      $host_substr = substr($host, -$length, $length);
+      $domain_substr = substr($domain, -$length, $length);
+
+      if ($domain_substr != $host_substr) {
+        unset($recipients[$mailbox]);
+        $blocked[] = $mailbox;
+      }
+    }
+    else {
+      // Otherwise block all (not white-listed) mailboxes.
+      unset($recipients[$mailbox]);
+      $blocked[] = $mailbox;
+    }
+  }
+
+  // Return arrays of permitted and blocked addresses
+  return array(
+    'permitted' => $recipients,
+    'blocked'   => $blocked,
+  );
+}
+
+
+/**
+ * Admin settings page.
+ */
+function mailblock_settings_form() {
+  drupal_add_js(drupal_get_path('module', 'mailblock') . '/mailblock.js');
+
+  $form = array();
+  $form['status'] = array(
+    '#type'  => 'fieldset',
+    '#title' => mailblock_is_active() ? t("Mailblock is active") : t("Mailblock is inactive"),
+    '#collapsible' => TRUE,
+    '#collapsed'   => TRUE,
+  );
+  $form['status']['mailblock_active'] = array(
+    '#title'         => t('Activate Mailblock'),
+    '#description'   => mailblock_is_active()
+      ? t("De-select to permit mail delivery to any address.")
+      : t("Select to redirect mail that is addressed to undesired recipients."),
+    '#type'          => 'checkbox',
+    '#default_value' => mailblock_is_active(),
+  );
+
+  $form['addresses'] = array(
+    '#type'  => 'fieldset',
+    '#title' => t('Addresses'),
+    '#collapsible' => TRUE,
+    '#collapsed'   => !mailblock_is_active(),
+  );
+  $form['addresses']['mailblock_recipient'] = array(
+    '#title'         => t('Recipient(s) for out-going mail'),
+    '#description'   => t("Redirect drupal_mail() messages to these addresses (one per line), when the recipient domain and the site hostname do not match."),
+    '#type'          => 'textarea',
+    '#default_value' => variable_get('mailblock_recipient', variable_get('site_mail', '')),
+  );
+  $form['addresses']['mailblock_whitelist'] = array(
+    '#title'         => t('White list'),
+    '#description'   => t("Permit delivery to these email addresses (one per line)."),
+    '#type'          => 'textarea',
+    '#default_value' => variable_get('mailblock_whitelist', ''),
+  );
+  $form['addresses']['mailblock_deliver_to_site_domain'] = array(
+    '#title'         => t('Permit delivery to the site domain?'),
+    '#description'   => t("Permit delivery when the domain of the email address matches <b>@http_host</b>&nbsp;?<br/>Note: Matching is against the <em>shortest</em> of the two domain strings (address@bar.com <em>will</em> match site http://foo.bar.com/).", array('@http_host' => $_SERVER['HTTP_HOST'])),
+    '#type'          => 'checkbox',
+    '#default_value' => variable_get('mailblock_deliver_to_site_domain', FALSE),
+  );
+  $form['addresses']['mailblock_force'] = array(
+    '#title'         => t('Force redirection for <strong>all</strong> messages'),
+    '#description'   => t("Select to force redirection, regardless of the recipient's domain, or the address white list."),
+    '#type'          => 'checkbox',
+    '#default_value' => variable_get('mailblock_force', FALSE),
+  );
+
+  // Admin settings
+  $form['admin'] = array(
+    '#type'  => 'fieldset',
+    '#title' => t('Advanced settings'),
+    '#collapsible' => TRUE,
+    '#collapsed'   => TRUE,
+  );
+  $form['admin']['mailblock_live_site'] = array(
+    '#title'         => t('Live sites directory'),
+    '#description'   => t("Enter the name of the directory containing the live settings.php file. Separate directory names with commas for a multi-site deployment.<br/>Mailblock will raise a !status_report warning whenever it is active on a live site.", array('!status_report' => l("status report", "admin/reports/status"))),
+    '#type'          => 'textfield',
+    '#default_value' => variable_get('mailblock_live_site', 'default'),
+  );
+  $form['admin']['mailblock_safe_files'] = array(
+    '#title'         => t('PHP mail' . '() function -- safe files list'),
+    '#description'   => t("Do not warn about these files in the !status_report.<br/>Use this only if you have <strong>confirmed</strong> that the usage is safe.", array('!status_report' => l("status report", "admin/reports/status"))),
+    '#type'          => 'textarea',
+    '#default_value' => variable_get('mailblock_safe_files', ''),
+  );
+
+  // System settings form with an additional custom submit handler
+  $form = system_settings_form($form);
+  array_unshift($form['#submit'], 'mailblock_settings_form_submit');
+  return $form;
+}
+
+
+/**
+ * This variable was originally stored as 'mailblock_disabled',
+ * but has since been inverted to a positive 'mailblock_active'.
+ */
+function mailblock_settings_form_submit($form, &$form_state) {
+  // Delete 'mailblock_disabled' from the database, if it exists.
+  if (array_key_exists('mailblock_disabled', variable_init())) {
+    variable_del('mailblock_disabled');
+  }
+}
+
+
+/**
+ * Determine whether or not mailblock should do anything.
+ *
+ * This variable was originally stored as 'mailblock_disabled', but it
+ * has since been renamed and inverted to a positive 'mailblock_active'
+ * to (a) avoid confusion with whether the module itself is enabled
+ * in Drupal, and (b) avoid double-negatives in settings files.
+ *
+ * If it exists, the old variable name takes precedence over the new
+ * one. This means that the correct setting is shown in the settings
+ * form initially. When the settings form is saved, we delete the old
+ * variable from the database, after which the old variable can only
+ * have an effect if it appears in settings.php (in which case it must
+ * continue to be respected).
+ */
+function mailblock_is_active() {
+  static $active;
+  if (!isset($active)) {
+    $inactive = variable_get('mailblock_disabled', !variable_get('mailblock_active', TRUE));
+    $active = !$inactive;
+  }
+  return $active;
+}
+
+
+/**
+ * Test mail form.
+ */
+function mailblock_test_form() {
+  $form = array();
+  $form['test']['to'] = array(
+    '#title'         => t('To'),
+    '#type'          => 'textfield',
+    '#default_value' => isset($_GET['to']) ? $_GET['to'] : '',
+  );
+  $form['test']['cc'] = array(
+    '#title'         => t('Cc'),
+    '#type'          => 'textfield',
+    '#default_value' => isset($_GET['cc']) ? $_GET['cc'] : '',
+  );
+  $form['test']['bcc'] = array(
+    '#title'         => t('Bcc'),
+    '#type'          => 'textfield',
+    '#default_value' => isset($_GET['bcc']) ? $_GET['bcc'] : '',
+  );
+  $form['test']['subject'] = array(
+    '#title'         => t('Subject'),
+    '#type'          => 'textfield',
+    '#default_value' => isset($_GET['subject']) ? $_GET['subject'] : t("Mailblock test"),
+  );
+  $form['test']['body'] = array(
+    '#title'         => t('Body'),
+    '#type'          => 'textarea',
+    '#default_value' => isset($_GET['body']) ? $_GET['body'] : t("This is a test message sent by the mailblock module."),
+  );
+  $form['test']['submit'] = array(
+    '#type'  => 'submit',
+    '#value' => t('Send'),
+  );
+  return $form;
+}
+
+
+/**
+ * Send test mail.
+ */
+function mailblock_test_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  drupal_set_message("Sending test message");
+  drupal_mail('mailblock', 'test', $values['to'], language_default(), $values);
+  // I'm not storing the test values in the database, but let's
+  // at least pass them through to the query string so that repeated
+  // tests can be a little easier.
+  $exclude = array('op', 'submit', 'form_build_id', 'form_token', 'form_id');
+  $query = array_diff_key($values, array_flip($exclude));
+  drupal_goto('admin/settings/mailblock/test', $query);
+}
+
+
+/**
+ * Implementation of hook_mail().
+ */
+function mailblock_mail($key, &$message, $params) {
+  if ($key == 'test') {
+    if (!empty($params['cc'])) {
+      $message['headers']['cc'] = $params['cc'];
+    }
+    if (!empty($params['bcc'])) {
+      $message['headers']['bcc'] = $params['bcc'];
+    }
+    $message['subject'] = $params['subject'];
+    $message['body'][] = $params['body'];
+  }
+}
+
+
+/**
+ * Implementation of hook_menu().
+ */
+function mailblock_menu() {
+  // Admin settings page.
+  $items['admin/settings/mailblock'] = array(
+    'title'            => 'Mailblock',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('mailblock_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'type'             => MENU_NORMAL_ITEM,
+  );
+  // Form for sending test messages
+  $items['admin/settings/mailblock/settings'] = array(
+    'title'            => 'Settings',
+    'access arguments' => array('administer site configuration'),
+    'type'             => MENU_DEFAULT_LOCAL_TASK,
+  );
+  // Form for sending test messages
+  $items['admin/settings/mailblock/test'] = array(
+    'title'            => 'Test',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('mailblock_test_form'),
+    'access arguments' => array('administer site configuration'),
+    'type'             => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+

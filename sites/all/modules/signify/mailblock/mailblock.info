@@ -1,0 +1,4 @@
+name = Mailblock
+description = Email delivery safety net
+core = 6.x
+package = Signify authored modules

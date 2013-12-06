@@ -1,0 +1,4 @@
+name = Philanthropy NZ
+description = Custom behaviours for Philanthropy New Zealand
+core = 6.x
+package = Signify authored modules

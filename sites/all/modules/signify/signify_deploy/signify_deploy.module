@@ -1,0 +1,171 @@
+<?php
+// $Id$
+/**
+ * @file
+ * Helpers for deploying Signify Drupal sites.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function signify_deploy_menu() {
+  global $base_url;
+  $system_file_path = drupal_get_path('module', 'system');
+  return array(
+    'admin/signify/deploy' => array(
+      'title'            => 'Deployment',
+      'description'      => 'Common deployment tasks.',
+      'position'         => 'left',
+      'page callback'    => 'signify_deploy_default_page',
+      // calls system_admin_menu_block_page()
+      'file'             => 'system.admin.inc',
+      'file path'        => $system_file_path,
+      'access arguments' => array('signify deployment'),
+    ),
+    'admin/signify/deploy/menu' => array(
+      'title'            => 'Help',
+      'page callback'    => 'drupal_goto',
+      'page arguments'   => array('admin/signify/deploy'),
+      'access arguments' => array('signify deployment'),
+      'weight'           => -10,
+      'type'             => MENU_DEFAULT_LOCAL_TASK,
+    ),
+    'admin/signify/deploy/site-maintenance' => array(
+      'title'            => 'Maintenance mode',
+      'description'      => 'Take the site off-line for maintenance or bring it back online.',
+      'page callback'    => 'drupal_get_form',
+      'page arguments'   => array('system_site_maintenance_settings'),
+      'file'             => 'system.admin.inc',
+      'file path'        => $system_file_path,
+      'access arguments' => array('signify deployment'),
+      'weight'           => 0,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+    'admin/signify/deploy/modules' => array(
+      'title'            => 'Module list',
+      'description'      => 'Updates the module locations in the system table.',
+      'page callback'    => 'drupal_get_form',
+      'page arguments'   => array('system_modules'),
+      'file'             => 'system.admin.inc',
+      'file path'        => $system_file_path,
+      'access arguments' => array('signify deployment'),
+      'weight'           => 10,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+    'admin/signify/deploy/update' => array(
+      'title'            => 'Database updates',
+      'description'      => 'Check for pending database updates. Treat unexpected updates with caution.',
+      'page callback'    => 'drupal_goto',
+      'page arguments'   => array($base_url .'/update.php'),
+      'access arguments' => array('signify deployment'),
+      'weight'           => 20,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+    'admin/signify/deploy/clear-cache' => array(
+      'title'            => 'Clear cache',
+      'description'      => 'Flush all cached data.',
+      'page callback'    => 'signify_deploy_cache_clear',
+      'access arguments' => array('signify deployment'),
+      'weight'           => 30,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+    'admin/signify/deploy/status' => array(
+      'title'            => 'Status report',
+      'description'      => 'Check site status report for possible problems.',
+      'page callback'    => 'system_status',
+      'file'             => 'system.admin.inc',
+      'file path'        => $system_file_path,
+      'access arguments' => array('signify deployment'),
+      'weight'           => 40,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+    'admin/signify/deploy/logs' => array(
+      'title'            => 'Check logs',
+      'description'      => 'Check recent log entries for possible problems.',
+      'page callback'    => 'dblog_overview',
+      'file'             => 'dblog.admin.inc',
+      'file path'        => drupal_get_path('module', 'dblog'),
+      'access arguments' => array('signify deployment'),
+      'weight'           => 50,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+    'admin/signify/deploy/phpinfo' => array(
+      'title'            => 'PHP Info',
+      'description'      => 'Display the phpinfo() output.',
+      'page callback'    => 'signify_deploy_phpinfo',
+      'access arguments' => array('signify deployment'),
+      'weight'           => 60,
+      'type'             => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    ),
+  );
+}
+
+/**
+ * Menu callback for default local task.
+ */
+function signify_deploy_default_page() {
+  $output = <<<END
+<p>This menu provides easy access from a single location to tasks commonly required during deployments.</p>
+END;
+  $output .= system_admin_menu_block_page();
+  return $output;
+}
+
+/**
+ * Specify which menu links should have the current 'destination'
+ * query argument appended to them.
+ * Copied from devel.module
+ */
+function signify_deploy_menu_need_destination() {
+  return array('admin/signify/deploy/clear-cache');
+}
+
+/**
+ * Implementation of hook_menu_link_alter().
+ * Flag this link as needing alter at display time.
+ * This is more robust that setting alter in hook_menu().
+ * See signify_deploy_translated_menu_link_alter().
+ * Copied from devel.module
+ */
+function signify_deploy_menu_link_alter(&$item, $menu) {
+  if (in_array($item['link_path'], signify_deploy_menu_need_destination())) {
+    $item['options']['alter'] = TRUE;
+  }
+}
+
+/**
+ * Implementation of hook_translated_menu_item_alter().
+ * Append dynamic querystring 'destination' to several of our own menu items.
+ * Copied from devel.module
+ */
+function signify_deploy_translated_menu_link_alter(&$item) {
+  if (in_array($item['href'], signify_deploy_menu_need_destination())) {
+    $item['localized_options']['query'] = drupal_get_destination();
+  }
+}
+
+/**
+ * Menu callback; clears all caches, then redirects to the previous page.
+ * Copied from devel.module
+ */
+function signify_deploy_cache_clear() {
+  // LOCAL_TASKS are not processed by hook_menu_link_alter(),
+  // so hard-code a destination when using the clear cache tab,
+  // otherwise we'll end up on the <front> page. The normal menu
+  // links to this callback will set the destination successfully.
+  if (!isset($_REQUEST['destination'])) {
+    $_REQUEST['destination'] = urlencode('admin/signify/deploy');
+  }
+  drupal_flush_all_caches();
+  drupal_set_message('Cache cleared.');
+  drupal_goto();
+}
+
+/**
+ * Show phpinfo() output.
+ */
+function signify_deploy_phpinfo() {
+  phpinfo();
+  exit;
+}
+

@@ -1,0 +1,5 @@
+name = Signify Deploy
+description = Deployment helpers
+core = 6.x
+package = Signify authored modules
+dependencies[] = mailblock

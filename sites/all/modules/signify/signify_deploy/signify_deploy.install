@@ -1,0 +1,128 @@
+<?php
+// $Id$
+/**
+ * @file
+ * Live site deployment/configuration checks, and database updates.
+ * See signify_deploy.updates.inc
+ */
+
+// hook_update_N() functions are kept in a separate file:
+module_load_include('inc', 'signify_deploy', 'signify_deploy.updates');
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function signify_deploy_uninstall() {
+  // Required to enable automatic uninstall behaviours.
+  // Stub only, as we have no custom uninstall behaviours.
+}
+
+/**
+ * Implementation of hook_requirements().
+ */
+function signify_deploy_requirements($phase = 'runtime') {
+  $requirements = array();
+
+  // Ensure translations don't break at install time
+  $t = get_t();
+
+  if ($phase == 'install') {
+    // Make sure there are no database update functions
+    // at install time! (Protects against copying a modified
+    // version of this module from another project.)
+    $updates = drupal_get_schema_versions('signify_deploy');
+    if (!empty($updates)) {
+      $requirements['signify_deploy_install'] = array(
+        'title'       => $t('Signify Deploy install error'),
+        'description' => $t('hook_update_N() implemented at install time in signify_deploy.module. signify_deploy.updates.inc should not contain update functions upon initial installation. Please ensure that there are no database update functions from another project!'),
+        'severity'    => REQUIREMENT_ERROR,
+      );
+    }
+    return $requirements;
+  }
+
+  // Only report runtime issues on live sites.
+  if (strpos(conf_path(), 'signify.co.nz') !== FALSE && !defined('STAGING_SITE')) {
+    return; // this is a development site
+  }
+
+  $class = array(
+    REQUIREMENT_INFO    => 'info',
+    REQUIREMENT_OK      => 'ok',
+    REQUIREMENT_WARNING => 'warning',
+    REQUIREMENT_ERROR   => 'error',
+  );
+
+  // Performance settings.
+  $performance = array();
+  // Page cache
+  if (variable_get('cache', CACHE_DISABLED) == CACHE_DISABLED) {
+    $performance[REQUIREMENT_ERROR]['cache'] = array(
+      'value'       => $t("Page cache is disabled"),
+    );
+  }
+  // Page compression
+  if (!variable_get('page_compression', TRUE)) {
+    $performance[REQUIREMENT_INFO]['compression'] = array(
+      'value'       => $t("Page compression is disabled"),
+    );
+  }
+  // Block cache
+  if (variable_get('block_cache', CACHE_DISABLED) == CACHE_DISABLED) {
+    $performance[REQUIREMENT_WARNING]['block_cache'] = array(
+      'value'       => $t("Block cache is disabled"),
+    );
+  }
+  // CSS aggregation
+  if (!variable_get('preprocess_css', 0)) {
+    $performance[REQUIREMENT_ERROR]['preprocess_css'] = array(
+      'value'       => $t("CSS aggregation is disabled"),
+    );
+  }
+  // Javascript aggregation
+  if (!variable_get('preprocess_js', 0)) {
+    $performance[REQUIREMENT_ERROR]['preprocess_js'] = array(
+      'value'       => $t("Javascript aggregation is disabled"),
+    );
+  }
+  foreach ($performance as $severity => $issues) {
+    $value = array();
+    foreach ($issues as $issue) {
+      $value[] = $issue['value'];
+    }
+    $requirements['signify_deploy_performance_' . $class[$severity]] = array(
+      'title'       => $t('Deployment: Performance'),
+      'description' => $t('!Performance issues for live deployment', array('!Performance' => l('Performance', 'admin/settings/performance'))),
+      'value'       => count($value) > 1 ? theme('item_list', $value) : $value[0],
+      'severity'    => $severity,
+    );
+  }
+
+  // By convention, we keep development modules in sites/all/modules/development.
+  // Check that this directory does not exist.
+  // Am using __FILE__ to avoid relying upon any server variables for the path
+  // (but am relying on signify_deploy being installed to sites/all/modules/signify).
+  $development = preg_replace('@signify[/\\\\]signify_deploy[/\\\\]signify_deploy.install$@', 'development', __FILE__);
+  if (file_exists($development)) {
+    $requirements['signify_deploy_development_modules'] = array(
+      'title'       => $t('Deployment: Development modules'),
+      'value'       => $t('sites/all/modules/development exists'),
+      'severity'    => REQUIREMENT_ERROR,
+    );
+  }
+
+  // Check that sites/signify.co.nz does not exist.
+  // Am using __FILE__ to avoid relying upon any server variables for the path
+  // (but am relying on signify_deploy being installed to sites/all/modules/signify).
+  $signifyconz = preg_replace('@all[/\\\\]modules[/\\\\]signify[/\\\\]signify_deploy[/\\\\]signify_deploy.install$@', 'signify.co.nz', __FILE__);
+  if (file_exists($signifyconz)) {
+    $requirements['signify_deploy_signify_co_nz'] = array(
+      'title'       => $t('Deployment: Signify site settings'),
+      'value'       => $t('sites/signify.co.nz exists'),
+      'severity'    => REQUIREMENT_ERROR,
+    );
+  }
+
+  return $requirements;
+}
+
