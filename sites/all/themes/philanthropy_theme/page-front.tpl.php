@@ -14,6 +14,24 @@
     <!--[if lte IE 6]>
       <link type="text/css" rel="stylesheet" media="screen, projection" href="<?php echo $base_path . path_to_theme() ?>/css/philanthropy-ie6.css" />
     <![endif]-->  
+
+    <link rel="stylesheet" type="text/css" src="<?php echo $base_path . path_to_theme(); ?>/gumby/css/gumby.css">
+
+    <script type="text/javascript" src="<?php echo $base_path; ?>misc/jquery.js"></script>
+
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/gumby.min.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.checkbox.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.fixed.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.navbar.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.radiobtn.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.retina.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.skiplink.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.tabs.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.toggleswitch.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/gumby.init.js"></script>
+    <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/main.js"></script>
+
   </head>
 
   <body class="<?php print $body_classes; ?>">
