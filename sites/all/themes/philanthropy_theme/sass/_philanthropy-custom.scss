@@ -464,8 +464,7 @@ a {
     color:#888;
   }
   .twitter-timeline {
-    margin: 0 10px 10px;
-    width: 300px;
+    width: 350px;
   }
   .sfy-story iframe {
     /* use important because we can't control the iframe output
@@ -1453,14 +1452,14 @@ div {
 
 
 .tile {
-  padding:20px;
   .open-plan{
+    padding:20px;
     .block{
       margin-bottom:30px;
     }
   }
-  .featured { 
-    margin-left:-20px;
+  .featured {
+    padding-right:20px; 
     .block{
       background-color:#EDE8DF;
       border-top:4px solid #3E3C87;

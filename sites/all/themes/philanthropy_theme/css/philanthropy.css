@@ -1813,7 +1813,7 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 .front .col .block h2.block-title { font-size: 1.12500em; }
 .front .col .block h3.title { font-size: 1.14286em; }
 .front .resource-date, .front .date { font-style: italic; font-size: 14px; line-height: 1.5em; color: #888; }
-.front .twitter-timeline { margin: 0 10px 10px; width: 300px; }
+.front .twitter-timeline { width: 350px; }
 .front .sfy-story iframe { /* use important because we can't control the iframe output
 since it is created by external script */ overflow: auto !important; min-height: 600px !important; height: 600px !important; margin: 0 10px 10px !important; width: 300px !important; }
 
@@ -2122,9 +2122,9 @@ div.status { color: #336600; background: #ccff88; border-color: #bbee77; }
 .view-id-speakers table thead { display: none; }
 .view-id-speakers table img { float: left; margin-right: 1em; }
 
-.tile { padding: 20px; }
+.tile .open-plan { padding: 20px; }
 .tile .open-plan .block { margin-bottom: 30px; }
-.tile .featured { margin-left: -20px; }
+.tile .featured { padding-right: 20px; }
 .tile .featured .block { background-color: #EDE8DF; border-top: 4px solid #3E3C87; margin-bottom: 30px; padding: 15px; }
 
 /** Layout
