@@ -2118,6 +2118,11 @@ div.status { color: #336600; background: #ccff88; border-color: #bbee77; }
 
 .block-title { position: absolute; top: -200%; }
 
+@media only screen and (max-width: 768px) { .menu-name-primary-links { display: none; } }
+.menu-name-primary-links ul ul li a { border: none; }
+.menu-name-primary-links ul ul { margin: 0; padding-left: 20px; border-bottom: 1px solid #f1edea; }
+.menu-name-primary-links li a { display: block; padding: 8px 0; border-bottom: 1px solid #f1edea; }
+
 /** Layout
 ---------------------------------
 *  Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
