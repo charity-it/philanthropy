@@ -26,7 +26,7 @@ $(document).ready(function() {
   }
 
   // Hover emulation for IE 6.
-  if ($.browser.msie && parseInt(jQuery.browser.version) == 6) {
+  if ($('html').hasClass('ie6')) {
     $('#admin-menu li').hover(function() {
       $(this).addClass('iehover');
     }, function() {

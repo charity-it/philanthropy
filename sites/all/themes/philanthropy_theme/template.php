@@ -514,7 +514,9 @@ function philanthropy_theme_header_nav_menu_output($tree) {
       $output .= theme('menu_item', $link, $data['link']['has_children'], '', $in_active_trail);
     }
   }
-  return $output ? '<ul id="site-nav" class="floatwrapper">' . $output . '</ul>' : '';
+  return $output ? '<!-- Toggle for mobile navigation, targeting the <ul> -->
+  <a class="toggle" gumby-trigger="#nav > ul" href="#"><i class="icon-menu"></i></a>
+  <ul id="site-nav" class="floatwrapper">' . $output . '</ul>' : '';
 }
 
 /**
