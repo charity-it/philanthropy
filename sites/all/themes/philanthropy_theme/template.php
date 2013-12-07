@@ -570,9 +570,21 @@ function philanthropy_theme_filefield_file($file) {
 }
 
 function philanthropy_theme_generate_topwidget() {
-  $te .= '
-  <div id="site-search" class="site-search">
-      <form action="https://www.google.com/search" class="search-theme-form">
+  $icons = array(
+    array('icon' => 'twitter',  'url' => 'https://www.twitter.com/philanthropynz',  'title' => 'Twitter',  'colour' => '#4080C0'),
+    array('icon' => 'facebook', 'url' => 'https://www.facebook.com/philanthropynz', 'title' => 'Facebook', 'colour' => '#4080C0'),
+    array('icon' => 'video',    'url' => 'https://www.youtube.com/philanthropynz',  'title' => 'Youtube',  'colour' => '#A00000')
+  );
+  $te .= '<div id="site-search" class="site-search">
+  <span style="font-size:36px; verical-align:middle">
+';
+  foreach($icons as $icon) {
+    $te .= '<a href="' . $icon['url'] . '" title="' . $icon['title'] . '">';
+    $te .= '<i class="icon-' . $icon['icon'] . '" style="color:' . $icon['colour'] . '"></i>';
+    $te .= '</a> ';
+  }
+  $te .= '</span>
+      <form action="https://www.google.com/search" class="search-theme-form" style="display:inline">
           <input class="input form-text" type="text" name="as_q" /> 
           <button class="form-submit btn medium default pretty"><span>Search</span></button>
           <input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
