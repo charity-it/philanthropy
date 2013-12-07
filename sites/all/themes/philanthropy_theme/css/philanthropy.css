@@ -1782,7 +1782,7 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 #site-search { font-size: 1em; line-height: 1.5em; position: absolute; right: 14px; bottom: 0; z-index: 1; }
 #site-search #search-theme-form { margin-bottom: 20px; }
 #site-search #search-theme-form .form-item { display: inline; float: left; }
-#site-search #search-theme-form label { font-weight: normal; color: #ffffff; }
+#site-search #search-theme-form label { position: absolute; font-weight: normal; color: #ffffff; }
 #site-search #search-theme-form input.form-text { width: 230px; }
 #site-search #edit-submit { padding: 5px; cursor: pointer; font-size: 14px; height: 31px; }
 
