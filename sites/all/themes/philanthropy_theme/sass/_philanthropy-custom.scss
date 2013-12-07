@@ -1454,4 +1454,18 @@ div {
 
 .tile {
   padding:20px;
+  .open-plan{
+    .block{
+      margin-bottom:30px;
+    }
+  }
+  .featured { 
+    margin-left:-20px;
+    .block{
+      background-color:#EDE8DF;
+      border-top:4px solid #3E3C87;
+      margin-bottom:30px;
+      padding:15px;
+    }
+  }
 }

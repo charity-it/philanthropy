@@ -90,8 +90,12 @@
         </div>
       </div>
       <div class="columns four tile">
+        <div class="open-plan">
         <?php print $front_left; ?>
-        <?php print $front_right; ?>
+        </div>
+        <div class="featured">
+          <?php print $front_right; ?>
+        </div>
         <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
       </div>
     
