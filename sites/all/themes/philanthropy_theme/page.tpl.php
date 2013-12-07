@@ -72,15 +72,8 @@
 	        
 	        <?php print $tg_subsite; ?>
 	        
-	        <?php if(!$tg_subsite): ?>  
-		        <div id="site-search" class="site-search">
-		        	<form action="https://www.google.com/search">
-				  <input type="text" name="as_q"> <button>Search</button>
-				  <input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
-				</form>
-		        </div>
-	        <?php endif ?>  
-	                  
+	        <?php if(!$tg_subsite) echo philanthropy_theme_generate_topwidget(); ?>  
+		
 	        <hr/>
 	      </div> <!-- / #branding -->      
 	      <?php if(!$tg_subsite): ?>   

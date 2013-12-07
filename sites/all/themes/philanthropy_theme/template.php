@@ -569,3 +569,25 @@ function philanthropy_theme_filefield_file($file) {
   return $output;
 }
 
+function philanthropy_theme_generate_topwidget() {
+  $te .= '
+<div id="site-search" class="site-search">
+  <form action="https://www.google.com/search">
+    <input type="text" name="as_q" value="">
+    <button>Search</button>
+    <input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
+  </form>
+</div>
+
+<script type="text/javascript">
+<!--
+jQuery("#site-search input[type=\\"text\\"]").css("color", "#909090").val("Type Search Here").click(function() {
+  if(jQuery(this).hasClass("already-clicked")) return;
+  jQuery(this).css("color", "black").val("").toggleClass("already-clicked");
+});
+//-->
+</script>
+';
+
+  return $te;
+}
