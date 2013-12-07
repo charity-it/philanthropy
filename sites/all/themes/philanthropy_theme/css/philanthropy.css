@@ -1793,11 +1793,11 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 /* Site Navigation */
 .navbar { margin-top: 20px; position: relative; }
 .navbar > ul { width: 100%; margin-left: 5px; }
-.navbar > ul li.join_now { padding: 0px 20px; }
+.navbar > ul li.join_now { padding: 0px 20px; border-right: 0; }
 .navbar > ul li.join_now:hover > a { background: #5bbd73; }
 .navbar > ul li.join_now > a:hover, .navbar > ul li.join_now > a:active, .navbar > ul li.join_now > a:focus { background: #5bbd73; }
 .navbar > ul li.join_now .menu { display: none; }
-.navbar ul { color: #ffffff; border-top: 1px solid #29afdf; border-bottom: 1px solid #29afdf; }
+.navbar ul { color: #ffffff; }
 .navbar li { border-right: 1px solid #29afdf; }
 .navbar li li { float: none; border: none; }
 .navbar li a { border-right: 1px solid #2396bf; }

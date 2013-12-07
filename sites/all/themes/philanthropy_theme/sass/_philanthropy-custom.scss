@@ -352,14 +352,13 @@ a {
 .navbar {
   margin-top:20px;
   position: relative;
-  //border-top: 1px solid #29afdf;
-  //border-bottom: 1px solid #29afdf;
   > ul {
     width: 100%;
     margin-left:5px;
 
     li.join_now{
       padding: 0px 20px;
+      border-right:0;
       &:hover{
         > a{
           background: lighten($secondary-color, 10%);
@@ -382,8 +381,6 @@ a {
   }
   ul {
     color: #ffffff;
-    border-top: 1px solid #29afdf;
-    border-bottom: 1px solid #29afdf;
   }
   li {
     border-right: 1px solid #29afdf;
