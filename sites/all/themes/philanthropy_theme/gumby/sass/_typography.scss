@@ -32,7 +32,8 @@ h1 {
   }
 }
 h2 { 
-  @include font-size($large); 
+  font-size: 25px;
+  font-size: 1.8rem;
   font-weight:bold;
   line-height: 1.5em;
   padding-bottom:10px;

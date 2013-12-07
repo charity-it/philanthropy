@@ -1,54 +1,3 @@
-/* Adapted from Eric Meyer - see <http://meyerweb.com/eric/tools/css/reset/> 
-++++++++++++++++++++++++ */
-
-/* v1.0 | 20080212 */
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  /*outline: 0;*/
-  vertical-align: baseline;
-  background: transparent;
-}
-
-body {
-  line-height: 1.5;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote {
-  &:before, &:after {
-    content: '';
-    content: none;
-  }
-}
-
-q {
-  &:before, &:after {
-    content: '';
-    content: none;
-  }
-}
-
-del {
-  text-decoration: line-through;
-}
-
-/* tables still need 'cellspacing="0"' in the markup */
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
 /* skip link
 ++++++++++++++++++++++++++++*/
 
@@ -365,7 +314,7 @@ a {
     margin-left:5px;
 
     li.join_now{
-      padding: 0px 20px;
+      padding: 0px;
       border-right:0;
       &:hover{
         > a{
@@ -377,6 +326,11 @@ a {
         @extend .medium;
         @extend .pretty;
         @extend .secondary;
+        @include border-radius(0 8px 8px 0);
+        display:block;
+        border:1px solid #42a35a;
+        height:59px;
+        line-height:56px;
         &:hover, &:active, &:focus {
           background: lighten($secondary-color, 10%);
         }
@@ -456,36 +410,6 @@ a {
 ++++++++++++++++++++++++ */
 
 .front {
-  .col {
-    float: left;
-    overflow: hidden;
-  }
-  .double-col {
-    width: 640px;
-  }
-  .single-col {
-    width: 320px;
-  }
-  .col {
-    .block {
-      background: url("../images/backgrounds/front-block-gradient.png") repeat-x 0 0;
-      border: 1px solid #efdf80;
-      padding: 10px;
-      margin: 0 10px 10px 10px;
-    }
-    .feature .block {
-      background: none;
-      border: 0;
-    }
-    .block {
-      h2.block-title {
-        font-size: 1.12500em;
-      }
-      h3.title {
-        font-size: 1.14286em;
-      }
-    }
-  }
   .resource-date, .date {
     font-style: italic;
     font-size:14px;
@@ -493,16 +417,8 @@ a {
     color:#888;
   }
   .twitter-timeline {
-    width: 350px;
-  }
-  .sfy-story iframe {
-    /* use important because we can't control the iframe output
-    since it is created by external script */
-    overflow: auto !important;
-    min-height: 600px !important;
-    height: 600px !important;
-    margin: 0 10px 10px !important;
-    width: 300px !important;
+    width: 600px;
+    height:350px;
   }
 }
 
@@ -1489,6 +1405,14 @@ div {
     p{
       @extend .lead;
       color:#777;
+      font-size:20px;
+      line-height:30px;
+    }
+    .open-plan {
+      padding-bottom:0;
+      .block{
+        margin-bottom:0;
+      }
     }
   }
   .open-plan{
@@ -1498,7 +1422,7 @@ div {
     }
   }
   .featured {
-    padding-right:30px; 
+    padding: 20px 30px 20px 20px; 
     .block{
       background-color:#FBFAF9;
       border-top:4px solid #25A1CF;
@@ -1511,4 +1435,9 @@ div {
 .filesize{
   font-size:0.8em;
   color:#555;
+}
+
+.block-title{
+  position:absolute;
+  top:-200%;
 }

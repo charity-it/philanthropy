@@ -15,8 +15,6 @@
       <link type="text/css" rel="stylesheet" media="screen, projection" href="<?php echo $base_path . path_to_theme() ?>/css/philanthropy-ie6.css" />
     <![endif]-->  
 
-    <link rel="stylesheet" type="text/css" src="<?php echo $base_path . path_to_theme(); ?>/gumby/css/gumby.css">
-
     <script type="text/javascript" src="<?php echo $base_path; ?>misc/jquery.js"></script>
 
     <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/modernizr-2.6.2.min.js"></script>
@@ -105,24 +103,22 @@
         </div>
       </div>
       <div class="row">
-          <div class="columns eight tile">
-           <div class="open-plan">
-            <?php print $front_middle; ?>
-            </div>
+        <div class="columns seven tile">
+         <div class="open-plan">
+          <?php print $front_middle; ?>
           </div>
-        
-      
-      <div class="columns four tile">
-        <div class="open-plan">
-        <?php print $front_left; ?>
-        </div>
-        <div class="featured">
-          <?php print $front_right; ?>
-        </div>
-         <div class="featured">
+          <div class="featured">
             <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
           </div>
-      </div>
+        </div>
+        <div class="columns five tile">
+          <div class="open-plan">
+          <?php print $front_left; ?>
+          </div>
+          <div class="featured">
+            <?php print $front_right; ?>
+          </div>
+        </div>
     
     </div> 
 <!-- END MAIN CONTENT -->
