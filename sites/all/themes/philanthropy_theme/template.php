@@ -571,13 +571,13 @@ function philanthropy_theme_filefield_file($file) {
 
 function philanthropy_theme_generate_topwidget() {
   $te .= '
-<div id="site-search" class="site-search">
-  <form action="https://www.google.com/search">
-    <input type="text" name="as_q" value="">
-    <button>Search</button>
-    <input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
-  </form>
-</div>
+  <div id="site-search" class="site-search">
+      <form action="https://www.google.com/search" class="search-theme-form">
+          <input class="input form-text" type="text" name="as_q" /> 
+          <button class="form-submit btn medium default pretty"><span>Search</span></button>
+          <input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
+      </form>
+  </div>
 
 <script type="text/javascript">
 <!--

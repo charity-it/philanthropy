@@ -68,14 +68,10 @@
                 <img src="<?php print $base_path . path_to_theme() ?>/images/site-title.jpg" alt="<?php print t('Go to Philanthropy New Zealand homepage'); ?>"/>
               </a>       
             </div>
+            
 
-            <div id="site-search" class="site-search">
-                <form action="https://www.google.com/search" class="search-theme-form">
-                    <input class="input form-text" type="text" name="as_q" /> 
-                    <button class="form-submit btn medium default pretty"><span>Search</span></button>
-                    <input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
-                </form>
-            </div>
+	    <?php echo philanthropy_theme_generate_topwidget(); ?>
+
                     
             <hr/>
         </div> <!-- / #branding -->      
