@@ -571,8 +571,8 @@ function philanthropy_theme_filefield_file($file) {
 
 function philanthropy_theme_generate_topwidget() {
   $icons = array(
-    array('icon' => 'twitter',  'url' => 'https://www.twitter.com/philanthropynz',  'title' => 'Twitter',  'colour' => '#4080C0'),
-    array('icon' => 'facebook', 'url' => 'https://www.facebook.com/philanthropynz', 'title' => 'Facebook', 'colour' => '#4080C0'),
+    array('icon' => 'twitter',  'url' => 'https://www.twitter.com/philanthropynz',  'title' => 'Twitter',  'colour' => '#8dcfd4'),
+    array('icon' => 'facebook', 'url' => 'https://www.facebook.com/philanthropynz', 'title' => 'Facebook', 'colour' => '#7290b9'),
     array('icon' => 'video',    'url' => 'https://www.youtube.com/philanthropynz',  'title' => 'Youtube',  'colour' => '#A00000')
   );
   $te .= '<div id="site-search" class="site-search">
