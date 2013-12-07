@@ -41,6 +41,9 @@ h3 {
   font-size: 1.4rem;
   line-height:1.5em;
   color:#666;
+  a &{
+    color:$body-link-color;
+  }
 }
 h4 { @include font-size($norm);}
 h5 { @include font-size($norm);}
