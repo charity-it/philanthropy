@@ -183,10 +183,12 @@
     </div> 
 <!-- END MAIN CONTENT -->
     
+  </div> <!-- /#page -->
+  </div> </div>
 <!-- START FOOTER -->
     <?php if(!empty($footer_message) || !empty($footer_block)): ?>
     <div id="footer" class="footer">
-      <hr/>
+      <hr/>    
       <?php print $footer_block; ?>
       <?php if($footer_message): ?>
       <div class="footer-message">
@@ -197,9 +199,8 @@
     <?php endif; ?>
 <!-- END FOOTER -->
     
-    </div></div> <!-- /#page -->
+   
     <?php print $scripts; ?>
     <?php print $closure; ?>
-  </div>
   </body>
 </html>
