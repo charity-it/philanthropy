@@ -1,0 +1,132 @@
+/* Add HasLayout
+++++++++++++++++++++++++ */
+
+#main, div.double-col, #sidebar-first .block-menu_block .content {
+  zoom: 1;
+}
+
+#content-top {
+  .views-exposed-form, .views-exposed-widget {
+    zoom: 1;
+  }
+}
+
+#footer {
+  zoom: 1;
+}
+
+/* Z-index Issues
+++++++++++++++++++++++++++++*/
+
+#nav {
+  z-index: 1;
+  ul#site-nav li li {
+    /* weird! this fixes random gaps between li's and a's */
+    border: 1px solid #2396bf;
+  }
+}
+
+div.admin {
+  .left, .right {
+    width: 46%;
+    /* fix the admin page in IE6 */
+  }
+}
+
+/* General Fixes
+++++++++++++++++++++++++++++*/
+
+.term-subject-area-conference2011 #branding {
+  padding: 0;
+}
+
+/*
+ * Tabs CSS - IE 5 and 6 don't support PNGs with alpha transparency.
+ */
+
+ul {
+  &.primary li a, &.secondary li a {
+    display: inline;
+    /* Otherwise the blocks mistakenly get 100% width in IE5 */
+    display: inline-block;
+    /* Otherwise the blocks mistakenly get 100% width in IE6 */
+    .tab {
+      display: inline;
+      /* Otherwise the blocks mistakenly get 100% width in IE5 */
+      display: inline-block;
+      /* Otherwise the blocks mistakenly get 100% width in IE6 */
+    }
+  }
+  &.primary, &.secondary {
+    width: 100%;
+    /* Otherwise IE5 treats the ul as floated */
+    width: auto;
+    /* Reset to auto width for IE6 */
+  }
+  &.primary li a {
+    background: url(../images/tabs/tab-left-ie6.png) no-repeat left -38px;
+    .tab {
+      background: url(../images/tabs/tab-right-ie6.png) no-repeat right -38px;
+    }
+    &:hover {
+      cursor: pointer;
+      /* Minor fix for primary and secondary tabs in IE */
+      color: #555555;
+      text-decoration: none;
+      background: url(../images/tabs/tab-left-ie6.png) no-repeat left -76px;
+    }
+  }
+  &.secondary li a:hover {
+    cursor: pointer;
+    /* Minor fix for primary and secondary tabs in IE */
+    color: #555555;
+    text-decoration: none;
+  }
+  &.primary li {
+    a:hover .tab {
+      background: url(../images/tabs/tab-right-ie6.png) no-repeat right -76px;
+    }
+    &.active a {
+      background: url(../images/tabs/tab-left-ie6.png) no-repeat left 0;
+      &:hover {
+        background: url(../images/tabs/tab-left-ie6.png) no-repeat left 0;
+      }
+      .tab, &:hover .tab {
+        background: url(images/tabs/tab-right-ie6.png) no-repeat right 0;
+      }
+    }
+  }
+}
+
+/** Drupal admin tables **/
+
+#content tr {
+  &.even {
+    th, td {
+      border-bottom: 1px solid #cccccc;
+      /* IE doesn't display borders on table rows */
+    }
+  }
+  &.odd {
+    th, td {
+      border-bottom: 1px solid #cccccc;
+      /* IE doesn't display borders on table rows */
+    }
+  }
+}
+
+.tg-subsite a {
+  &:visited {
+    color: #F05133;
+  }
+  &:hover {
+    color: #F05133;
+    text-decoration: underline;
+  }
+}
+
+/** Conference Programme **/
+
+.view-conference-programme, .conf-category {
+  width: 100%;
+}

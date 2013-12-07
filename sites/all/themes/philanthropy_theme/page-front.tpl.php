@@ -1,7 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>">
-
+<!doctype html>
+<!--[if IE 6 ]><html class="no-js ie6 oldie gumby-no-touch" id="ie6" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7 oldie gumby-no-touch" id="ie7" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8 oldie gumby-no-touch" id="ie8" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9 gumby-no-touch" id="ie9" lang="en" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>"><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js gumby-no-touch" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>"><!--<![endif]-->
   <head>
     <title><?php print $head_title; ?></title>
     <?php print $head; ?>
@@ -16,11 +18,11 @@
 
   <body class="<?php print $body_classes; ?>">
 
-    <div id="skip-to-content">
+    <div class="skip-to-content" id="skip-to-content">
       <a href="#content">Skip to Content</a><hr/>
     </div>  
 
-    <div id="page">
+    <div class="page-wrapper" id="page">
     
 <!-- START HEADER -->
       
@@ -92,7 +94,7 @@
     
 <!-- START FOOTER -->
     <?php if(!empty($footer_message) || !empty($footer_block)): ?>
-    <div id="footer">
+    <div id="footer" class="footer">
       <hr/>    
       <?php print $footer_block; ?>
       <?php if($footer_message): ?>

@@ -3,3 +3,7 @@ files/
 images/
 
 sites/default/settings.php
+
+*.scssc
+
+sites/default/settings.php

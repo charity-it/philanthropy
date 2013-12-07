@@ -1,0 +1,1468 @@
+/* Adapted from Eric Meyer - see <http://meyerweb.com/eric/tools/css/reset/> 
+++++++++++++++++++++++++ */
+
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*outline: 0;*/
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1.5;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote {
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+q {
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+del {
+  text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* skip link
+++++++++++++++++++++++++++++*/
+
+#skip-to-content a {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #0d58a6;
+  line-height: 1.125;
+  &:focus {
+    top: 4px;
+    left: 10px;
+    z-index: 2;
+  }
+}
+
+/* General
+++++++++++++++++++++++++ */
+
+body {
+  background: #efefef;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333333;
+  font-size: 100%;
+}
+
+#page, #main {
+  overflow: hidden;
+}
+
+#page {
+  background: #ffffff;
+}
+
+.term-subject-area-conference2011 #branding {
+  #site-name, #logo {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    top: -9999px;
+    width: 1px;
+    overflow: hidden;
+  }
+}
+
+.term-subject-area-conference2013 #branding {
+  #site-name, #logo {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    top: -9999px;
+    width: 1px;
+    overflow: hidden;
+  }
+}
+
+.hide {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  top: -9999px;
+  width: 1px;
+  overflow: hidden;
+  span {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    top: -9999px;
+    width: 1px;
+    overflow: hidden;
+  }
+}
+
+hr, #site-name, #site-search h2, #nav h2, #sidebar-first .block-menu_block h2 {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  top: -9999px;
+  width: 1px;
+  overflow: hidden;
+}
+
+td, th {
+  vertical-align: top;
+}
+
+img {
+  border: 0;
+}
+
+.replace {
+  position: relative;
+  overflow: hidden;
+  a em {
+    cursor: pointer;
+  }
+}
+
+a.replace em {
+  cursor: pointer;
+}
+
+.replace em {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.floatwrapper:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.calendar-calendar div.date-nav a, a:link {
+  color: #27809f;
+}
+
+.calendar-calendar div.date-nav a:visited, a:visited {
+  color: #1f687f;
+}
+
+.calendar-calendar div.date-nav a {
+  &:hover, &:active, &:focus {
+    color: #25a1cf;
+    text-decoration: none;
+  }
+}
+
+a {
+  &:hover, &:active, &:focus {
+    color: #25a1cf;
+    text-decoration: none;
+  }
+}
+
+/* Common Font Sizes */
+
+.front .col .content, #nav {
+  /*font-size: 0.75000em;*/
+  font-size: 0.87500em;
+}
+
+#content-header {
+  .breadcrumb, div.tabs {
+    /*font-size: 0.75000em;*/
+    font-size: 0.87500em;
+  }
+}
+
+#content-top, #content-area, #sidebar-first .content, content-bottom, #footer {
+  /*font-size: 0.75000em;*/
+  font-size: 0.87500em;
+}
+
+.front .col .content .content {
+  font-size: 1em;
+}
+
+/* Headers */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, Times New Roman, serif;
+  font-size: 100%;
+}
+
+h1 {
+  font-size: 1.37500em;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+input, select, textarea {
+  font-size: inherit;
+  font-family: inherit;
+  letter-spacing: normal;
+}
+
+/* Header
+++++++++++++++++++++++++ */
+
+#branding {
+  background: url("../images/site-logo.jpg") no-repeat 98% 0;
+  height: 146px;
+  position: relative;
+  padding: 0 0 1.5625em 0;
+  /*space for search*/
+}
+
+#logo {
+  position: absolute;
+  top: 55px;
+  left: 88px;
+}
+
+#site-name a {
+  font-size: 1.37500em;
+}
+
+/* Conference 2011 alternative banner */
+
+.term-subject-area-conference2011 #branding {
+  background: #a6cf57 none;
+  height: 12.75em;
+  padding: 0 0 1.5625em 0;
+  /*space for search*/
+  div.replace {
+    height: 12.75em;
+    padding: 0 0 1.5625em 0;
+    /*space for search*/
+    display: block;
+    width: 960px;
+  }
+  .conference-intro em {
+    height: 12.75em;
+    padding: 0 0 1.5625em 0;
+    /*space for search*/
+    display: block;
+    width: 960px;
+    background: url("../images/conference/2011-conference.jpg") no-repeat 0 0;
+  }
+}
+
+/* Conference 2013 alternative banner */
+
+.term-subject-area-conference2013 {
+  #branding {
+    background: #305694 none;
+    height: 235px;
+    padding: 0;
+    div.replace {
+      height: 235px;
+      padding: 0;
+      display: block;
+      width: 960px;
+    }
+    .conference-intro em {
+      height: 235px;
+      padding: 0;
+      display: block;
+      width: 960px;
+      background: url("../images/conference/conference2013-banner.png") no-repeat 0 0;
+    }
+  }
+  #site-search {
+    top: 10px;
+  }
+}
+
+/* Thoughtfulgiving alternative banner */
+
+#branding {
+  height: 179px;
+  padding: 0 0 1.5625em 0;
+  /*space for search*/
+  div.replace {
+    height: 179px;
+    padding: 0 0 1.5625em 0;
+    /*space for search*/
+    display: block;
+    width: 960px;
+  }
+  .tg-subsite-intro em {
+    height: 179px;
+    padding: 0 0 1.5625em 0;
+    /*space for search*/
+    display: block;
+    width: 960px;
+    background: url("../images/thoughtfulgiving/thoughtfulgiving.jpg") no-repeat 0 0;
+  }
+}
+
+/* Site search */
+
+#site-search {
+  font-size: 0.875em;
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  z-index: 1;
+  #search-theme-form {
+    /*position: absolute;
+    right: 14px;
+    bottom: 0;*/
+    .form-item {
+      display: inline;
+    }
+    label {
+      font-weight: normal;
+      color: #ffffff;
+    }
+    .form-text {
+      width: 150px;
+      border: 1px solid #2396bf;
+      color: #666666;
+    }
+  }
+  #edit-submit {
+    cursor: pointer;
+  }
+}
+
+/* Site Navigation */
+
+#nav {
+  background: #25a1cf;
+  margin: 0 0 10px;
+  border-top: 1px solid #2396bf;
+  border-bottom: 1px solid #2396bf;
+  position: relative;
+  ul {
+    color: #ffffff;
+    border-top: 1px solid #29afdf;
+    border-bottom: 1px solid #29afdf;
+  }
+  li {
+    display: block;
+    float: left;
+    width: auto;
+    border-right: 1px solid #29afdf;
+    li {
+      float: none;
+      border: none;
+    }
+    a {
+      padding: 1em;
+      text-decoration: none;
+      color: #ffffff;
+      display: block;
+      border-right: 1px solid #2396bf;
+      &:hover, &:active, &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+  a {
+    &.active-parent, &.parent {
+      background-color: #2396bf;
+    }
+  }
+  li {
+    a {
+      &:hover, &:active, &:focus {
+        background-color: #2396bf;
+      }
+    }
+    &:first-child, &.first {
+      border-left: none;
+    }
+  }
+  ul#site-nav {
+    li {
+      &:hover, &:focus, &:active {
+        position: relative;
+        z-index: 100;
+      }
+    }
+    ul {
+      /* hide the sub items */
+      position: absolute;
+      left: -9999px;
+      z-index: 1000;
+      border: none;
+    }
+    li {
+      &:hover ul, &:active ul, &:focus ul, &.hover ul {
+        /* reveal the sub items */
+        left: auto;
+        width: 300px;
+        /*arbitrary width at the moment*/
+        background: #2396bf;
+      }
+    }
+  }
+  li a span {
+    display: block;
+  }
+}
+
+/* Front Page
+++++++++++++++++++++++++ */
+
+.front {
+  .col {
+    float: left;
+    overflow: hidden;
+  }
+  .double-col {
+    width: 640px;
+  }
+  .single-col {
+    width: 320px;
+  }
+  .col {
+    .block {
+      background: url("../images/backgrounds/front-block-gradient.png") repeat-x 0 0;
+      border: 1px solid #efdf80;
+      padding: 10px;
+      margin: 0 10px 10px 10px;
+    }
+    .feature .block {
+      background: none;
+      border: 0;
+    }
+    .block {
+      h2.block-title {
+        font-size: 1.12500em;
+      }
+      h3.title {
+        font-size: 1.14286em;
+      }
+    }
+  }
+  .resource-date {
+    font-style: italic;
+  }
+  .twitter-timeline {
+    margin: 0 10px 10px;
+    width: 300px;
+  }
+  .sfy-story iframe {
+    /* use important because we can't control the iframe output
+    since it is created by external script */
+    overflow: auto !important;
+    min-height: 600px !important;
+    height: 600px !important;
+    margin: 0 10px 10px !important;
+    width: 300px !important;
+  }
+}
+
+/* Conference Block */
+
+.conference-block a.replace {
+  display: block;
+  width: 278px;
+  height: 347px;
+  em {
+    display: block;
+    width: 278px;
+    height: 347px;
+    background: url("../images/conference/2011-conference-block.jpg") no-repeat 0 0;
+  }
+}
+
+/* Standard Page
+++++++++++++++++++++++++ */
+
+#content-inner {
+  padding: 0 20px 20px 20px;
+}
+
+#sidebar-first {
+  padding: 0 0 0 10px;
+}
+
+/* Content */
+
+#content-area {
+  h2 {
+    font-size: 1.42857em;
+  }
+  h3 {
+    font-size: 1.28571em;
+  }
+  h4, h5, h6 {
+    font-size: 1.14286em;
+  }
+  ul, ol, table {
+    margin-bottom: 1em;
+  }
+  ul ul, ol ol {
+    margin-bottom: 0;
+  }
+  ul {
+    padding-left: 1.3em;
+  }
+  ol {
+    padding-left: 1.7em;
+  }
+  ul {
+    list-style-type: disc;
+    ul {
+      list-style-type: circle;
+      ul {
+        list-style-type: square;
+        ul {
+          list-style-type: circle;
+        }
+      }
+    }
+  }
+  ol {
+    list-style-type: decimal;
+    ol {
+      list-style-type: lower-alpha;
+      ol {
+        list-style-type: decimal;
+      }
+    }
+  }
+  blockquote {
+    margin: 1.5em;
+    padding-left: 0.5em;
+    font-style: italic;
+    border-left: 4px solid #cecece;
+  }
+  img {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  .center-image img {
+    display: inline;
+  }
+}
+
+/* special case for about/board */
+
+.page-about-board h3 {
+  clear: both;
+}
+
+/* special case for links page */
+
+#content-area div.summary {
+  margin-bottom: 1em;
+}
+
+/* Thoughtful Giving subsite content
+++++++++++++++++++++++++ */
+
+.tg-subsite {
+  font-family: "Arial Light", Arial, sans-serif;
+  p {
+    font-family: "Arial Light", Arial, sans-serif;
+  }
+  h1 {
+    font-size: 2em;
+    color: #F05133;
+    font-weight: normal;
+  }
+}
+
+/* I have to use this as well as the above to differentiate between view and node h1 */
+
+.node-type-giving-subsite-page .tg-subsite h1 {
+  font-size: 1.5em;
+  font-family: "Arial Light", Arial, sans-serif;
+  font-weight: bold;
+}
+
+.tg-subsite {
+  p {
+    font-size: 1em;
+  }
+  #content-area .attachments {
+    h3 {
+      font-family: "Arial Light", Arial, sans-serif;
+      padding: 20px 0 10px 0;
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .attachments li {
+    list-style: none;
+    clear: both;
+  }
+}
+
+/* Thoughtful Giving subsite views
+++++++++++++++++++++++++ */
+
+.view-thoughtful-giving {
+  width: 730px;
+  .views-row {
+    clear: both;
+    .attachments {
+      clear: both;
+    }
+    border: none;
+    overflow: hidden;
+    margin-bottom: 40px;
+    padding: 0;
+  }
+  .views-row-odd .tg-text {
+    width: 350px;
+    float: left;
+    padding-right: 20px;
+  }
+  .views-row-even {
+    .tg-imagevideo {
+      width: 350px;
+      float: left;
+      padding-right: 20px;
+    }
+    .tg-text {
+      width: 350px;
+      float: right;
+    }
+  }
+  .views-row-odd .tg-imagevideo {
+    width: 350px;
+    float: right;
+  }
+  .views-row-even .tg-imagevideo {
+    .tg-image-image {
+      float: none;
+      margin: 0;
+      img {
+        float: none;
+        margin: 0;
+      }
+    }
+    .tg-image-video {
+      float: none;
+      margin: 0;
+    }
+  }
+  h2 {
+    font-size: 1em;
+    color: #F05133;
+    font-family: "Arial Light", Arial, sans-serif;
+  }
+  .node .tg-text {
+    h2, h3 {
+      font-style: normal;
+    }
+  }
+  a {
+    color: #F05133;
+    text-decoration: none;
+  }
+  .readmore {
+    margin-top: 10px;
+    float: right;
+    a {
+      font-size: 1em;
+    }
+  }
+  .attachments a {
+    font-size: 1em;
+  }
+  .field-content a:hover {
+    text-decoration: underline;
+  }
+}
+
+#content-area {
+  .view-thoughtful-giving .views-field-upload-fid .field-content ul li {
+    list-style-image: url('/sites/all/modules/contrib/filefield/icons/application-pdf.png');
+  }
+  table {
+    th, td {
+      border: 1px solid #cccccc;
+      font-size: 0.85714em;
+      padding: 3px;
+      text-align: left;
+    }
+  }
+  tbody td {
+    background-color: #f8f8f8;
+  }
+  .webform-component-textfield, .webform-component-markup, .form-footer {
+    margin-top: 1em;
+  }
+  .node {
+    overflow: hidden;
+  }
+}
+
+/* Content Tables
+++++++++++++++++++++++++ */
+
+/* Webforms
+++++++++++++++++++++++++ */
+
+/* Views Displays
+++++++++++++++++++++++++ */
+
+.views-row {
+  border-bottom: 1px solid #cecece;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
+.views-row-last {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+ul.pager {
+  border-top: 3px double #cecece;
+  padding-top: 1em;
+}
+
+/* Resource Images */
+
+.field-field-resource-image img, .resource-thumbnail img {
+  display: block;
+}
+
+.field-field-resource-image, .resource-thumbnail {
+  width: 200px;
+  padding: 0 10px 0 0;
+}
+
+.node-teaser .resource-thumbnail {
+  width: 100px;
+  float: left;
+}
+
+.field-field-resource-image {
+  width: 200px;
+  float: right;
+}
+
+.field-field-resource-date {
+  margin-bottom: 1em;
+  div {
+    display: inline;
+  }
+}
+
+.filefield-icon {
+  float: left;
+  margin-right: 0.4em;
+}
+
+/* Views Filters and Site Search
+++++++++++++++++++++++++ */
+
+#content-top #block-views--exp-Resources-page_1, #content-area .search-form {
+  overflow: hidden;
+  background: #d1e7ef;
+  border: 1px solid #8bc9df;
+  padding: 10px;
+  margin-bottom: 1em;
+}
+
+#content-top {
+  .views-exposed-widget {
+    overflow: hidden;
+    margin: 2px;
+    label {
+      float: left;
+      width: 5em;
+    }
+  }
+  .views-widget {
+    float: left;
+    width: auto;
+  }
+  .views-exposed-widget input.form-text {
+    width: 450px;
+  }
+}
+
+#content-area .search-form a {
+  color: #333333;
+}
+
+dl.search-results dd {
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 1em;
+  &:last-child, &.last {
+    border: none;
+  }
+}
+
+p.search-info {
+  font-size: 0.85714em;
+}
+
+/* Calendar
+++++++++++++++++++++++++ */
+
+.view-event-calendar {
+  .view-content, .date-nav {
+    overflow: hidden;
+  }
+  td, th {
+    text-align: center;
+  }
+  .has-events {
+    background: #eaeaea;
+  }
+}
+
+.calendar-calendar {
+  div.date-nav {
+    background: none;
+    border: none;
+  }
+  th.days, div.date-nav h3 {
+    color: #333333;
+  }
+}
+
+#content-area .calendar-calendar {
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    display: inline;
+    list-style: none;
+    border-right: 1px solid #333333;
+    padding: 0 0.5em;
+    &:last-child, &.last {
+      border: none;
+    }
+  }
+}
+
+/* Left Sidebar / Section Nav
+++++++++++++++++++++++++ */
+
+#sidebar-first {
+  #sidebar-first-inner {
+    padding-right: 10px;
+  }
+  .block-menu_block {
+    li {
+      border-top: 1px solid #e8e8e8;
+      li {
+        &:first-child, &.first {
+          border-top: 1px solid #e8e8e8;
+        }
+      }
+      &:first-child, &.first {
+        border: none;
+      }
+      a {
+        display: block;
+        padding: 0.5em 10px;
+        text-decoration: none;
+      }
+      li a {
+        padding-left: 2em;
+      }
+    }
+    a {
+      &:hover, &:active, &:focus {
+        /*background-color: #e8e8e8;*/
+        text-decoration: underline;
+      }
+      &.active {
+        font-weight: bold;
+      }
+    }
+    .content {
+      border-bottom: 2px solid #e8e8e8;
+    }
+  }
+}
+
+/* Left sidebar thoughtfulgiving menu block
+++++++++++++++++++++++++ */
+
+.tg-sidebar .block-menu_block .menu li {
+  border-bottom: 2px solid #00AEEF;
+  padding: 5px 0;
+}
+
+#sidebar-first .tg-sidebar .block-menu_block li {
+  border-bottom: 2px solid #00AEEF;
+  padding: 5px 0;
+  li {
+    &:first-child, &.first {
+      border-bottom: 2px solid #00AEEF;
+      padding: 5px 0;
+    }
+  }
+}
+
+.tg-sidebar .block-menu_block .menu li {
+  a {
+    color: #0074E8;
+    padding-left: 10px;
+    text-decoration: none;
+  }
+  &.active-trail a, .active-trail a {
+    color: #F05133;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Thoughtfulgiving pages
+++++++++++++++++++++++++ */
+
+.tg-subsite {
+  .node {
+    clear: none;
+    display: inline;
+  }
+  .block {
+    float: right;
+    margin: 0 0 10px 10px;
+  }
+  .node {
+    .tg-image-video, .tg-image-image {
+      float: right;
+      margin: 0 0 10px 10px;
+    }
+  }
+  .block {
+    width: 300px;
+    background: url("../images/backgrounds/tg-block-gradient.png") repeat-x scroll 0 0 transparent;
+    border: 1px solid #16C2F4;
+    padding: 10px;
+  }
+  .node {
+    .tg-image-video, .tg-image-image {
+      width: 350px;
+    }
+  }
+}
+
+.node .tg-image-image img {
+  float: right;
+}
+
+.tg-subsite {
+  .block views-field-title h3 {
+    font-size: 1.2em;
+  }
+  .tg-quote {
+    padding: 20px;
+  }
+  .node {
+    h2 {
+      color: #0074E8;
+    }
+    h3 {
+      color: #666666;
+    }
+    h2, h3 {
+      font-style: italic;
+    }
+  }
+  .tg-quote p {
+    font-size: 1.4em;
+    font-style: italic;
+    font-family: georgia;
+    color: #0074E8;
+  }
+}
+
+/* Thoughtful Giving Footer
+++++++++++++++++++++++++ */
+
+.thoughtfulgiving-footer {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #999999;
+}
+
+.footer-images {
+  margin: 0 auto;
+  img {
+    padding: 0 20px;
+    &.cnz-logo {
+      padding-bottom: 10px;
+    }
+  }
+}
+
+/* Footer
+++++++++++++++++++++++++ */
+
+#footer {
+  background: #cecece;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #9f9f9f;
+}
+
+/* UI Fixes from original Basic theme
+++++++++++++++++++++++++ */
+
+/* bug fix with views 2 edit links */
+
+div {
+  &.view div.views-admin-links {
+    width: auto;
+  }
+  &.block {
+    position: relative;
+    .edit {
+      display: none;
+      position: absolute;
+      right: -20px;
+      top: -5px;
+      z-index: 40;
+      padding: 3px 8px 0;
+      font-size: 10px;
+      line-height: 16px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      /*let's get fancy !*/
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-box-shadow: 0 1px 3px #888;
+      -webkit-box-shadow: -1px 1px 2px #666666;
+      a {
+        display: block;
+        border: 0;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    &:hover .edit {
+      display: block;
+    }
+  }
+  &.messages {
+    padding: 9px;
+    margin: 1em 0;
+    color: #003366;
+    background: #bbddff;
+    border: 1px solid #aaccee;
+  }
+  &.warning {
+    color: #884400;
+    background: #ffee66;
+    border-color: #eedd55;
+  }
+  &.error {
+    color: #ffffff;
+    background: #ee6633;
+    border-color: #dd5522;
+  }
+  &.status {
+    color: #336600;
+    background: #ccff88;
+    border-color: #bbee77;
+  }
+}
+
+/* Rollover edit links for blocks */
+
+/* Messages */
+
+/* Conference Registration form */
+
+#webform-component-preconference_sessions {
+  .webform-component-textfield, .webform-component-select {
+    width: 262px;
+    float: left;
+    margin-right: 5px;
+    margin-top: 1em;
+    position: relative;
+  }
+}
+
+#webform-component-attending_for_one_day_only_which_day {
+  .webform-component-textfield, .webform-component-select {
+    width: 262px;
+    float: left;
+    margin-right: 5px;
+    margin-top: 1em;
+    position: relative;
+  }
+}
+
+#webform-component-conference_participants {
+  .webform-component-email, .webform-component-textfield {
+    width: 262px;
+    float: left;
+    margin-right: 5px;
+    margin-top: 1em;
+    position: relative;
+  }
+}
+
+#webform-component-attending_for_one_day_only_which_day {
+  input, select {
+    width: 250px;
+    float: left;
+  }
+}
+
+#webform-component-preconference_sessions {
+  input, select {
+    width: 250px;
+    float: left;
+  }
+}
+
+#webform-component-conference_participants input {
+  width: 250px;
+  float: left;
+}
+
+#webform-component-attending_for_one_day_only_which_day .form-select, #webform-component-preconference_sessions .form-select {
+  width: auto;
+}
+
+#webform-component-conference_participants span.form-required {
+  position: absolute;
+  right: 0;
+  top: 1em;
+}
+
+#webform-component-attending_for_one_day_only_which_day label, #webform-component-preconference_sessions label, #webform-component-conference_participants label {
+  display: none;
+}
+
+#webform-component-name label, #webform-component-session label, #webform-component-name1 label, #webform-component-position_1 label, #webform-component-day label, #webform-component-email_address_1 label {
+  display: block;
+}
+
+#webform-component-name_2, #webform-component-name_3 {
+  clear: both;
+}
+
+#webform-component-conference_prices {
+  .webform-component-fieldset {
+    padding-bottom: 1.5em;
+  }
+  fieldset {
+    width: 700px;
+  }
+  legend {
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+  }
+}
+
+#webform-component-attending_for_one_day_only_which_day legend, #webform-component-preconference_sessions legend {
+  font-weight: bold;
+}
+
+#webform-component-attending_for_one_day_only_which_day {
+  padding-bottom: 25px;
+}
+
+#webform-component-conference_prices {
+  fieldset legend {
+    padding: 0;
+    text-align: left;
+    width: auto;
+    float: left;
+  }
+  label {
+    font-weight: normal;
+    display: inline;
+  }
+  .description {
+    float: right;
+  }
+  fieldset .webform-component-textfield .description {
+    float: none;
+  }
+  .form-item {
+    clear: left;
+  }
+}
+
+#webform-component-preconference_sessions {
+  margin-bottom: 10px;
+}
+
+/* Conference Carousel */
+
+.page-conference #carousel {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  text-align: center;
+  img {
+    padding: 0 125px;
+  }
+  .portrait {
+    padding: 0 239px;
+  }
+}
+
+/* For the Sponsors page, to center images*/
+
+.sponsors {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-checkboxes .form-item, .form-radios .form-item {
+  display: inline;
+}
+
+#node-7789 .form-radios .form-item {
+  display: block;
+}
+
+/* Conference Programme
+++++++++++++++++++++++++ */
+
+/* Day Programmes */
+
+.view-conference-programme {
+  .floatwrapper {
+    overflow: hidden;
+  }
+  .view-header {
+    overflow: hidden;
+    h2 {
+      font-size: 2.5em;
+      color: #27809F;
+      font-weight: normal;
+      .date {
+        color: #29AFDF;
+      }
+    }
+  }
+  .view-content {
+    overflow: hidden;
+    div.floatwrapper {
+      border-bottom: 1px solid #CECECE;
+    }
+    h3, .views-row {
+      overflow: hidden;
+      padding-top: 7px;
+    }
+    h3, .expand {
+      width: 97px;
+      float: left;
+      padding-left: 3px;
+    }
+    .abstract h3 {
+      width: auto;
+      float: none;
+      padding: 0;
+      overflow: visible;
+    }
+    h3 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    p {
+      margin-bottom: 6px;
+    }
+    .expand {
+      padding-bottom: 7px;
+      font-size: 0.8em;
+      color: #27809F;
+    }
+    .views-row {
+      width: 630px;
+      float: right;
+      padding-bottom: 0;
+      margin: 0;
+    }
+  }
+  .views-field-body .field-content {
+    width: 450px;
+    float: left;
+  }
+  .field-content .theme-stream {
+    overflow: hidden;
+    img {
+      height: 26px;
+      width: 36px;
+      padding-left: 5px;
+    }
+  }
+  .programme-right {
+    float: right;
+  }
+  .field-content {
+    .theme-stream {
+      .theme, .stream {
+        float: right;
+      }
+    }
+    .speakers {
+      .field-item {
+        float: right;
+      }
+      .node-inner {
+        float: right;
+        padding: 0 0 5px 10px;
+        width: 80px;
+      }
+      .speaker-name {
+        line-height: 1.2;
+      }
+      a {
+        text-decoration: none;
+        font-size: 0.85em;
+      }
+    }
+  }
+  .drop {
+    div {
+      float: left;
+      width: 26px;
+      height: 26px;
+      margin-right: 6px;
+    }
+    .up {
+      background: url('../images/conference/programme-sprites.png') 0 0 no-repeat;
+    }
+    .down {
+      background: url('../images/conference/programme-sprites.png') -25px 0 no-repeat;
+    }
+  }
+  .sml-drop {
+    div {
+      float: left;
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+    }
+    .plus {
+      background: url('../images/conference/programme-sprites.png') -51px 0 no-repeat;
+    }
+    .minus {
+      background: url('../images/conference/programme-sprites.png') -69px 0 no-repeat;
+    }
+  }
+}
+
+/* Overrides for other classes */
+
+/* Icon Key block */
+
+#icon-key {
+  padding-top: 30px;
+  //This is just a separator, change it later
+  h3 {
+    font-size: 1.3em;
+    padding-bottom: 5px;
+  }
+}
+
+/* Conference Categories views */
+
+.conf-category {
+  border-top: 1px solid #CECECE;
+  .view-header {
+    margin: 10px 0;
+    h3 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+  }
+  .views-row {
+    .views-field-name span {
+      font-weight: bold;
+    }
+    clear: both;
+    overflow: hidden;
+    border: none;
+    .views-field-tid {
+      width: 80px;
+      float: left;
+      img {
+        padding-top: 4px;
+      }
+    }
+    .views-field-name, .views-field-description {
+      width: 650px;
+      float: right;
+    }
+  }
+}
+
+/* Conference Speaker Nodes */
+
+.node-type-conference_speaker {
+  .field-field-speaker-image {
+    float: left;
+    margin-right: 10px;
+  }
+  .body-text {
+    //margin-left: 10px;
+ 
+  }
+}
+
+/* Speakers view */
+
+.view-id-speakers table {
+  width: 100%;
+  thead {
+    display: none;
+  }
+  img {
+    float: left;
+    margin-right: 1em;
+  }
+}

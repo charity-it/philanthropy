@@ -25,7 +25,6 @@ features[] = favicon
 features[] = primary_links
 features[] = secondary_links
 
-stylesheets[screen, projection][] = css/philanthropy-layout.css
 stylesheets[screen, projection][] = css/philanthropy-tabs.css
 stylesheets[screen, projection][] = css/philanthropy-system.css
 stylesheets[screen, projection][] = css/philanthropy-tinymce.css
