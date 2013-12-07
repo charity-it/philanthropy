@@ -86,11 +86,15 @@
     
       <div class="columns eight">
         <div class="feature tile">
-          <?php print $front_feature; ?>
+          <div class="open-plan">
+            <?php print $front_feature; ?>
+          </div>
         </div>
         <div class="row">
           <div class="columns twelve tile">
+           <div class="open-plan">
             <?php print $front_middle; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -101,7 +105,9 @@
         <div class="featured">
           <?php print $front_right; ?>
         </div>
-        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
+         <div class="featured">
+            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
+          </div>
       </div>
     
     </div> 
