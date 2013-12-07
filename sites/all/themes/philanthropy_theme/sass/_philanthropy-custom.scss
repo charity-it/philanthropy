@@ -315,34 +315,27 @@ a {
 
 /* Site search */
 
-#site-search {
+.site-search {
   font-size: 1em;
   line-height:1.5em;
   position: absolute;
   right: 14px;
   bottom: 0;
   z-index: 1;
-  #search-theme-form {
+  .search-theme-form {
+    @extend .field;
     margin-bottom:20px;
-    .form-item {
-      @extend .field;
-      display: inline;
-      float: left;
-    }
     label {
       position:absolute;
       font-weight: normal;
       color: #ffffff;
     }
     input.form-text {
-      @extend .input;
       width:230px;
     }
   }
-  #edit-submit {
-    @extend .btn;
-    @extend .default;
-    @extend .pretty;
+  .form-submit{
+    line-height: 20px;
     padding:5px;
     cursor: pointer;
     font-size: 14px;
