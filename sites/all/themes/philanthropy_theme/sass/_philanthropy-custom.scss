@@ -349,6 +349,32 @@ a {
   position: relative;
   border-top: 1px solid #29afdf;
   border-bottom: 1px solid #29afdf;
+  > ul {
+    width: 100%;
+    margin-left:5px;
+
+    li.join_now{
+      padding: 0px 20px;
+      &:hover{
+        > a{
+          background: lighten($secondary-color, 10%);
+        }
+      }
+      > a{
+        @extend .btn;
+        @extend .medium;
+        @extend .pretty;
+        @extend .secondary;
+        &:hover, &:active, &:focus {
+          background: lighten($secondary-color, 10%);
+        }
+      }
+
+      .menu{
+        display:none;
+      }
+    }
+  }
   ul {
     color: #ffffff;
     border-top: 1px solid #29afdf;
@@ -1454,7 +1480,7 @@ div {
   .featured {
     padding-right:20px; 
     .block{
-      background-color:#EDE8DF;
+      background-color:#FBFAF9;
       border-top:4px solid #3E3C87;
       margin-bottom:30px;
       padding:15px;

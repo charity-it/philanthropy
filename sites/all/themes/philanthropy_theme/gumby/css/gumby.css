@@ -1261,7 +1261,9 @@ img { -ms-interpolation-mode: bicubic; }
   .navbar ul.active { height: auto; max-height: 600px; z-index: 999998; -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; -webkit-box-shadow: 0 2px 2px #196f8e; -moz-box-shadow: 0 2px 2px #196f8e; box-shadow: 0 2px 2px #196f8e; } }
 .navbar ul li { display: table-cell; text-align: center; padding-bottom: 0; margin: 0; height: 50px; line-height: 58px; }
 @media only screen and (max-width: 767px) { .navbar ul li { display: block; position: relative; min-height: 50px; max-height: 320px; height: auto; width: 100%; border-right: 0 !important; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; } }
-.navbar ul li > a { display: block; padding: 0 14px; white-space: nowrap; color: white; font-weight: bold; height: 50px; line-height: 48px; font-size: 14px; font-size: 1rem; }
+.navbar ul li li > a { line-height: 1.5em; padding: 8px 14px; height: auto; }
+.navbar ul li ul li { line-height: 1.5em; height: auto; }
+.navbar ul li > a { display: block; padding: 0 14px; white-space: nowrap; color: white; font-weight: bold; height: 56px; line-height: 56px; font-size: 14px; font-size: 1rem; }
 .navbar ul li > a i.icon-popup { position: absolute; }
 .navbar ul li .btn { border-color: #0e3c4d !important; }
 .navbar ul li.field { margin-bottom: 0 !important; margin-right: 0; }
