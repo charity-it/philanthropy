@@ -1767,7 +1767,7 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 
 #content-header .breadcrumb, #content-header div.tabs { /*font-size: 0.75000em;*/ font-size: 0.87500em; }
 
-#content-top, #content-area, #sidebar-first .content, content-bottom, #footer { /*font-size: 0.75000em;*/ font-size: 0.87500em; }
+#content-top, #content-area, #sidebar-first .content, content-bottom, #footer { /*font-size: 0.75000em;*/ font-size: 1em; }
 
 .front .col .content .content { font-size: 1em; }
 
