@@ -26,8 +26,8 @@
     
 <!-- START HEADER -->
       
-	    <div id="header">
-	    	<div id="branding">
+	    <div id="header" class="header row">
+	    	<div id="branding" class="branding">
 		    	<div id="site-name">
 		      	<?php if (!empty($site_name) && $is_front): ?>
 		      	<h1>
@@ -53,7 +53,7 @@
 	        <?php print $tg_subsite; ?>
 	        
 	        <?php if(!$tg_subsite): ?>  
-		        <div id="site-search">
+		        <div id="site-search" class="site-search">
 		        	<?php print $search_box; ?>
 		        </div>
 	        <?php endif ?>  

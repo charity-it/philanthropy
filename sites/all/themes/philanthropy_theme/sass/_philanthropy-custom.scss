@@ -76,6 +76,9 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333333;
   font-size: 100%;
+  &.admin{
+    padding-top:20px;
+  }
 }
 
 #page, #main {
@@ -219,34 +222,12 @@ a {
   font-size: 1em;
 }
 
-/* Headers */
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, Times New Roman, serif;
-  font-size: 100%;
-}
-
-h1 {
-  font-size: 1.37500em;
-  margin-bottom: 10px;
-}
-
-p {
-  margin-bottom: 1em;
-}
-
-input, select, textarea {
-  font-size: inherit;
-  font-family: inherit;
-  letter-spacing: normal;
-}
-
 /* Header
 ++++++++++++++++++++++++ */
 
 #branding {
   background: url("../images/site-logo.jpg") no-repeat 98% 0;
-  height: 146px;
+  height: 215px;
   position: relative;
   padding: 0 0 1.5625em 0;
   /*space for search*/
@@ -315,9 +296,6 @@ input, select, textarea {
 /* Thoughtfulgiving alternative banner */
 
 #branding {
-  height: 179px;
-  padding: 0 0 1.5625em 0;
-  /*space for search*/
   div.replace {
     height: 179px;
     padding: 0 0 1.5625em 0;
@@ -338,30 +316,36 @@ input, select, textarea {
 /* Site search */
 
 #site-search {
-  font-size: 0.875em;
+  font-size: 1em;
+  line-height:1.5em;
   position: absolute;
   right: 14px;
   bottom: 0;
   z-index: 1;
   #search-theme-form {
-    /*position: absolute;
-    right: 14px;
-    bottom: 0;*/
+    margin-bottom:20px;
     .form-item {
+      @extend .field;
       display: inline;
+      float: left;
     }
     label {
       font-weight: normal;
       color: #ffffff;
     }
-    .form-text {
-      width: 150px;
-      border: 1px solid #2396bf;
-      color: #666666;
+    input.form-text {
+      @extend .input;
+      width:230px;
     }
   }
   #edit-submit {
+    @extend .btn;
+    @extend .default;
+    @extend .pretty;
+    padding:5px;
     cursor: pointer;
+    font-size: 14px;
+    height: 31px;
   }
 }
 
