@@ -52,12 +52,7 @@
             </div>
             
 
-	    <div id="site-search" class="site-search">
-	      <form action="https://www.google.com/search">
-		<input type="text" name="as_q"> <button>Search</button>
-		<input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">
-	      </form>
-	    </div>
+	    <?php echo philanthropy_theme_generate_topwidget(); ?>
 
                     
             <hr/>

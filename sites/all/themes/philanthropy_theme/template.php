@@ -569,3 +569,14 @@ function philanthropy_theme_filefield_file($file) {
   return $output;
 }
 
+function philanthropy_theme_generate_topwidget() {
+  $te .= '<div id="site-search" class="site-search">';
+  $te .= '<form action="https://www.google.com/search">';
+  $te .= '<input type="text" name="as_q">';
+  $te .= '<button>Search</button>';
+  $te .= '<input type="hidden" name="as_sitesearch" value="philanthropy.org.nz">';
+  $te .= '</form>';
+  $te .= '</div>';
+
+  return $te;
+}
