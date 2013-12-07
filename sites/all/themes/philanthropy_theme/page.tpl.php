@@ -40,13 +40,15 @@
       <a href="#content">Skip to Content</a><hr/>
     </div>  
 
+    <div class="row">
+
     <div class="page-wrapper" id="page">
     
 <!-- START HEADER -->
-      
+      <div class="columns twelve">
 	    <div id="header" class="header row">
-	    	<div id="branding" class="branding">
-		    	<div id="site-name">
+	    	<div id="branding" class="branding columns twelve">
+		    	<div id="site-name" class="site-name">
 		      	<?php if (!empty($site_name) && $is_front): ?>
 		      	<h1>
 		      		<a href="<?php print $front_page ?>" title="<?php print t('Go to Philanthropy New Zealand homepage'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
@@ -82,10 +84,12 @@
 	        <hr/>
 	      </div> <!-- / #branding -->      
 	      <?php if(!$tg_subsite): ?>   
-		      <div id="nav">
+		      <div class="row">
+			<div id="nav" class="navbar columns twelve">
 		      	<h2>Site Navigation</h2>
 		      	<?php print $primary_links; ?>
 		      	<hr/>
+			</div>
 		      </div>
 	      <?php endif ?> 
 	    </div>
@@ -93,7 +97,7 @@
     
 <!-- START MAIN CONTENT -->
     
-    <div id="main">
+    <div id="main" class="row">
       <!-- CONTENT -->
       <div id="content">
         <div id="content-inner" class="inner column center">
@@ -200,8 +204,9 @@
     <?php endif; ?>
 <!-- END FOOTER -->
     
-    </div> <!-- /#page -->
+    </div></div> <!-- /#page -->
     <?php print $scripts; ?>
     <?php print $closure; ?>
+  </div>
   </body>
 </html>
