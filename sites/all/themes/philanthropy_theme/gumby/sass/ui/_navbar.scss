@@ -2,7 +2,7 @@
 
 .navbar {
   width: 100%;
-  min-height: 60px;
+  min-height: 30px;
   display: block;
   margin-bottom: 20px;
   background: $navbar-color; // Change this color in settings to change the navbar color
@@ -109,7 +109,8 @@
     text-align: center;
     padding-bottom: 0;
     margin: 0;
-    @include line-and-height(height-calc($larger - 3));
+    height:50px;
+    line-height:58px;
 
     // Navbar List Item Mobile Specific Styles
     @include respond(all-phones) {
@@ -129,9 +130,9 @@
       padding: 0 ms(0);
       white-space: nowrap;
       color: $navbar-link-color;
-      text-shadow: 0 1px 2px darken($navbar-color, 20%),
-                   0 1px 0 darken($navbar-color, 20%);
-      @include line-and-height(height-calc($larger - 3));
+      font-weight:bold;
+      height:50px;
+      line-height:48px;
       @include font-size($norm);
       i.icon-popup {
         position: absolute;
@@ -343,7 +344,7 @@
 .gumby-no-touch .navbar ul li:hover > a,
 .gumby-touch .navbar ul li.active > a {
   position: relative;
-  background: $info-hover-color;
+  background: #2396BF;
   z-index: 1000;
 }
 

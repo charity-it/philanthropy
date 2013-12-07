@@ -201,7 +201,7 @@ a {
 
 /* Common Font Sizes */
 
-.front .col .content, #nav {
+.front .col .content {
   /*font-size: 0.75000em;*/
   font-size: 0.87500em;
 }
@@ -352,31 +352,22 @@ a {
 
 /* Site Navigation */
 
-#nav {
-  background: #25a1cf;
-  margin: 0 0 10px;
-  border-top: 1px solid #2396bf;
-  border-bottom: 1px solid #2396bf;
+.navbar {
   position: relative;
+  border-top: 1px solid #29afdf;
+  border-bottom: 1px solid #29afdf;
   ul {
     color: #ffffff;
     border-top: 1px solid #29afdf;
     border-bottom: 1px solid #29afdf;
   }
   li {
-    display: block;
-    float: left;
-    width: auto;
     border-right: 1px solid #29afdf;
     li {
       float: none;
       border: none;
     }
     a {
-      padding: 1em;
-      text-decoration: none;
-      color: #ffffff;
-      display: block;
       border-right: 1px solid #2396bf;
       &:hover, &:active, &:focus {
         text-decoration: underline;
@@ -411,8 +402,13 @@ a {
       left: -9999px;
       z-index: 1000;
       border: none;
+      li{
+        display:block;
+        text-align:left;
+      }
     }
     li {
+      
       &:hover ul, &:active ul, &:focus ul, &.hover ul {
         /* reveal the sub items */
         left: auto;
@@ -1450,4 +1446,9 @@ div {
     float: left;
     margin-right: 1em;
   }
+}
+
+
+.tile {
+  padding:20px;
 }
