@@ -457,8 +457,11 @@ a {
       }
     }
   }
-  .resource-date {
+  .resource-date, .date {
     font-style: italic;
+    font-size:14px;
+    line-height:1.5em;
+    color:#888;
   }
   .twitter-timeline {
     margin: 0 10px 10px;

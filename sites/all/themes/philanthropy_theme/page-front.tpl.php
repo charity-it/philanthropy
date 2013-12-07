@@ -84,19 +84,16 @@
           <?php print $front_feature; ?>
         </div>
         <div class="row">
-          <div class="columns six tile">
-            <?php print $front_left; ?>
-            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
-          </div>
-          <div class="columns six tile">
+          <div class="columns twelve tile">
             <?php print $front_middle; ?>
           </div>
         </div>
       </div>
       <div class="columns four tile">
+        <?php print $front_left; ?>
         <?php print $front_right; ?>
-        <script src="//storify.com/PhilanthropyNZ/wrapping-up-conference-2013.js"></script><noscript>[//storify.com/PhilanthropyNZ/wrapping-up-conference-2013]</noscript>
-      </div>      
+        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
+      </div>
     
     </div> 
 <!-- END MAIN CONTENT -->
