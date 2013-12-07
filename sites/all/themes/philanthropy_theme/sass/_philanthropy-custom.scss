@@ -271,6 +271,29 @@ a {
   }
 }
 
+.text-captcha-word-list-radios .form-item{
+  margin: 0;
+  padding: 0;
+}
+
+.form-item{
+  @extend .field;
+  margin-bottom:20px;
+}
+
+.form-submit{
+  @extend .btn;
+  @extend .pretty;
+  @extend .medium;
+  @extend .primary;
+  line-height: 20px;
+  padding:5px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 31px;
+  color:#fff;
+}
+
 /* Site search */
 
 .site-search {
@@ -291,13 +314,10 @@ a {
     input.form-text {
       width:230px;
     }
-  }
-  .form-submit{
-    line-height: 20px;
-    padding:5px;
-    cursor: pointer;
-    font-size: 14px;
-    height: 31px;
+    .form-submit{
+      padding:5px;
+      line-height: 19px;
+    }
   }
 }
 
@@ -1437,9 +1457,12 @@ div {
   color:#555;
 }
 
-.block-title{
-  position:absolute;
-  top:-200%;
+.hide-title{ 
+  overflow:hidden;
+  .block-title{
+    position:absolute;
+    top:-200%;
+  }
 }
 
 .menu-name-primary-links{
