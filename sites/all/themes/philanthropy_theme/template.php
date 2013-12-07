@@ -597,11 +597,11 @@ function philanthropy_theme_generate_topwidget() {
 	  )
   );
   $te .= '<div id="site-search" class="site-search" style="display:relative">
-  <span style="font-size:36px; verical-align:middle">
+  <span style="font-size:20px">
 ';
   foreach($icons as $icon) {
     $te .= '<a href="' . $icon['url'] . '" title="' . $icon['title'] . '">';
-    $te .= '<div style="border:1px solid black; border-radius:3px; width:48px; height:48px; display:inline-block; vertical-align:middle; overflow:hidden; padding-top:13px; text-align:center; background-color:' . $icon['bgcolour'] . '">';
+    $te .= '<div style="border:1px solid black; border-radius:3px; width:31px; height:31px; display:inline-block; vertical-align:middle; overflow:hidden; padding-top:4px; text-align:center; background-color:' . $icon['bgcolour'] . '">';
     $te .= '<i class="icon-' . $icon['icon'] . '" style="color:' . $icon['colour'] . '"></i>';
     $te .= '</div></a> ';
   }
