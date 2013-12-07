@@ -23,14 +23,14 @@
     </div>  
 
     <div class="page-wrapper" id="page">
-    
+
 <!-- START HEADER -->
       
-      <div id="header">
+      <div id="header" class="header row">
       
-        <div id="branding">
+        <div id="branding" class="branding columns twelve">
           
-          <div id="site-name">
+          <div id="site-name" class="site-name">
             <?php if (!empty($site_name) && $is_front): ?>
             <h1>
               <a href="<?php print $front_page ?>" title="<?php print t('Go to Philanthropy New Zealand homepage'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
@@ -38,7 +38,7 @@
             <?php else: ?>
             <div>
               <a href="<?php print $front_page ?>" title="<?php print t('Go to Philanthropy New Zealand homepage'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-            </div>            
+            </div>
             <?php endif; ?>
           </div>
           
@@ -53,9 +53,9 @@
           </div>  
                   
           <hr/>
-        </div> <!-- / #branding -->      
+      </div> <!-- / #branding -->      
         
-        <div id="nav">
+        <div id="nav" class="columns twelve">
           <h2>Site Navigation</h2>
           <?php print $primary_links; ?>
           <hr/>
@@ -66,25 +66,27 @@
     
 <!-- START MAIN CONTENT -->
     
-    <div id="main">
+    <div id="main" class="row">
     
       <?php print $messages; ?>
       
       <?php print $help; ?>     
     
-      <div class="col double-col">
+      <div class="columns eight">
         <div class="feature">
           <?php print $front_feature; ?>
         </div>
-        <div class="col single-col">
-          <?php print $front_left; ?>
-          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
-        </div>
-        <div class="col single-col">
-          <?php print $front_middle; ?>
+        <div class="row">
+          <div class="columns four">
+            <?php print $front_left; ?>
+            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PhilanthropyNZ"  data-widget-id="337009063105806336">Tweets by @PhilanthropyNZ</a>
+          </div>
+          <div class="columns four">
+            <?php print $front_middle; ?>
+          </div>
         </div>
       </div>
-      <div class="col single-col">
+      <div class="columns four">
         <?php print $front_right; ?>
         <script src="//storify.com/PhilanthropyNZ/wrapping-up-conference-2013.js"></script><noscript>[//storify.com/PhilanthropyNZ/wrapping-up-conference-2013]</noscript>
       </div>      

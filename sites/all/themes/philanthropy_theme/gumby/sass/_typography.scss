@@ -1,7 +1,7 @@
 /* Typography */
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: $font-family;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: $header-font-weight;
   color: $header-font-color;
   text-rendering: optimizeLegibility;
@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-  @include font-size($xxxlarge);
+  @include font-size($larger);
   &.xlarge {
     @include font-size($reallybig);
   }
@@ -31,10 +31,10 @@ h1 {
     @include font-size($absurd);
   }
 }
-h2 { @include font-size($xlarge); }
-h3 { @include font-size($larger);}
-h4 { @include font-size($large);}
-h5 { @include font-size($med);}
+h2 { @include font-size($large); }
+h3 { @include font-size($med);}
+h4 { @include font-size($norm);}
+h5 { @include font-size($norm);}
 h6 { @include font-size($norm);}
 
 @include respond(all-phones) {
