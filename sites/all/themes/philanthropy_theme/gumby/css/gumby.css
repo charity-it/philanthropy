@@ -1239,7 +1239,7 @@ img { -ms-interpolation-mode: bicubic; }
   [class*="column"]:after { display: table; clear: both; }
   [class^="push_"], [class*="push_"], [class^="pull_"], [class*="pull_"] { margin-left: 0 !important; } }
 /* Navigation (with dropdowns) */
-.navbar { width: 100%; min-height: 30px; display: block; margin-bottom: 20px; background: #25a1cf; position: relative; }
+.navbar { -webkit-border-radius: 8px; -moz-border-radius: 8px; -ms-border-radius: 8px; -o-border-radius: 8px; border-radius: 8px; width: 100%; min-height: 30px; display: block; margin-bottom: 20px; background: #25a1cf; position: relative; }
 @media only screen and (max-width: 767px) { .navbar { border: none; }
   .navbar .column, .navbar .columns { min-height: 0; } }
 .navbar.fixed { position: fixed; z-index: 99999; }
@@ -1263,7 +1263,7 @@ img { -ms-interpolation-mode: bicubic; }
 @media only screen and (max-width: 767px) { .navbar ul li { display: block; position: relative; min-height: 50px; max-height: 320px; height: auto; width: 100%; border-right: 0 !important; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; } }
 .navbar ul li li > a { line-height: 1.5em; padding: 8px 14px; height: auto; }
 .navbar ul li ul li { line-height: 1.5em; height: auto; }
-.navbar ul li > a { display: block; padding: 0 14px; white-space: nowrap; color: white; font-weight: bold; height: 56px; line-height: 56px; font-size: 14px; font-size: 1rem; }
+.navbar ul li > a { display: block; padding: 0 14px; white-space: nowrap; color: white; font-weight: bold; height: 56px; line-height: 56px; font-size: 14px; font-size: 1.1rem; }
 .navbar ul li > a i.icon-popup { position: absolute; }
 .navbar ul li .btn { border-color: #0e3c4d !important; }
 .navbar ul li.field { margin-bottom: 0 !important; margin-right: 0; }

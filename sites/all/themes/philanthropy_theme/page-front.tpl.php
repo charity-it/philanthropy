@@ -97,20 +97,21 @@
       
       <?php print $help; ?>     
     
-      <div class="columns eight">
+      <div class="columns twelve">
         <div class="feature tile">
           <div class="open-plan">
             <?php print $front_feature; ?>
           </div>
         </div>
-        <div class="row">
-          <div class="columns twelve tile">
+      </div>
+      <div class="row">
+          <div class="columns eight tile">
            <div class="open-plan">
             <?php print $front_middle; ?>
             </div>
           </div>
-        </div>
-      </div>
+        
+      
       <div class="columns four tile">
         <div class="open-plan">
         <?php print $front_left; ?>
