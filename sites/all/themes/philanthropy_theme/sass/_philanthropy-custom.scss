@@ -67,6 +67,14 @@ table {
   }
 }
 
+#admin-menu{
+  font-family:'lucida grande', tahoma, verdana, arial, sans-serif; //fix font family
+  ul a{
+    font-weight:bold; //make readable
+  }
+
+}
+
 /* General
 ++++++++++++++++++++++++ */
 
@@ -1043,10 +1051,11 @@ p.search-info {
 /* Footer
 ++++++++++++++++++++++++ */
 
-#footer {
+.footer {
   background: #efefef;
   text-align: center;
   padding: 20px 0;
+  margin-top:30px;
   border-top: 1px solid #9f9f9f;
 }
 
@@ -1479,6 +1488,7 @@ div {
     }
     p{
       @extend .lead;
+      color:#777;
     }
   }
   .open-plan{
@@ -1491,7 +1501,7 @@ div {
     padding-right:30px; 
     .block{
       background-color:#FBFAF9;
-      border-top:4px solid #3E3C87;
+      border-top:4px solid #25A1CF;
       margin-bottom:30px;
       padding:15px;
     }

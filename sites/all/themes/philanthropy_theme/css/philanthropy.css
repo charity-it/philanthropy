@@ -1710,6 +1710,9 @@ table { border-collapse: collapse; border-spacing: 0; }
 #skip-to-content a { position: absolute; left: -9999px; top: -9999px; font-weight: bold; color: #ffffff; background-color: #0d58a6; line-height: 1.125; }
 #skip-to-content a:focus { top: 4px; left: 10px; z-index: 2; }
 
+#admin-menu { font-family: 'lucida grande', tahoma, verdana, arial, sans-serif; }
+#admin-menu ul a { font-weight: bold; }
+
 /* General
 ++++++++++++++++++++++++ */
 body { border-top: 6px solid #25A1CF; font-size: 100%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #333333; font-size: 100%; }
@@ -2005,7 +2008,7 @@ p.search-info { font-size: 0.85714em; }
 
 /* Footer
 ++++++++++++++++++++++++ */
-#footer { background: #efefef; text-align: center; padding: 20px 0; border-top: 1px solid #9f9f9f; }
+.footer { background: #efefef; text-align: center; padding: 20px 0; margin-top: 30px; border-top: 1px solid #9f9f9f; }
 
 /* UI Fixes from original Basic theme
 ++++++++++++++++++++++++ */
@@ -2131,10 +2134,11 @@ div.status { color: #336600; background: #ccff88; border-color: #bbee77; }
 .view-id-speakers table img { float: left; margin-right: 1em; }
 
 .tile.feature h2 { display: none; }
+.tile.feature p { color: #777; }
 .tile .open-plan { padding: 20px 30px; }
 .tile .open-plan .block { margin-bottom: 30px; }
 .tile .featured { padding-right: 30px; }
-.tile .featured .block { background-color: #FBFAF9; border-top: 4px solid #3E3C87; margin-bottom: 30px; padding: 15px; }
+.tile .featured .block { background-color: #FBFAF9; border-top: 4px solid #25A1CF; margin-bottom: 30px; padding: 15px; }
 
 .filesize { font-size: 0.8em; color: #555; }
 
