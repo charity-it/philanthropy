@@ -30,6 +30,8 @@
 		<script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/ui/gumby.toggleswitch.js"></script>
 		<script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/gumby.init.js"></script>
 		<script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/main.js"></script>
+
+		<link href="http://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet" type="text/css">
 	</head>
 
 	<body class="<?php print $body_classes; ?>">
