@@ -332,10 +332,11 @@ a {
   > ul {
     width: 100%;
     margin-left:5px;
-
+    li:last-child {
+       border-right:0;
+    }
     li.join_now{
       padding: 0px;
-      border-right:0;
       &:hover{
         > a{
           background: lighten($secondary-color, 10%);
