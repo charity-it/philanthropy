@@ -343,7 +343,12 @@ a {
     width: 100%;
     margin-left:5px;
     li:last-child {
+       @include border-radius(0 8px 8px 0);
        border-right:0;
+       @include respond(portrait-tablets){
+        background:none;
+        @include border-radius(0);
+      }
     }
     @include respond(portrait-tablets){
       margin-left: 0;
@@ -363,9 +368,12 @@ a {
         @extend .secondary;
         @include border-radius(0 8px 8px 0);
         display:block;
-        border:1px solid #42a35a;
-        height:59px;
-        line-height:56px;
+        border: 1px solid #42a35a;
+        height: 59px;
+        line-height: 56px;
+        @include respond(portrait-tablets){
+          @include border-radius(0);
+        }
         &:hover, &:active, &:focus {
           background: lighten($secondary-color, 10%);
         }

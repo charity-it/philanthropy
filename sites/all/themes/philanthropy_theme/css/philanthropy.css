@@ -1789,11 +1789,13 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 .navbar { margin-top: 20px; position: relative; }
 @media only screen and (max-width: 768px) { .navbar { min-height: 70px; } }
 .navbar > ul { width: 100%; margin-left: 5px; }
-.navbar > ul li:last-child { border-right: 0; }
+.navbar > ul li:last-child { -webkit-border-radius: 0 8px 8px 0; -moz-border-radius: 0 8px 8px 0; -ms-border-radius: 0 8px 8px 0; -o-border-radius: 0 8px 8px 0; border-radius: 0 8px 8px 0; border-right: 0; }
+@media only screen and (max-width: 768px) { .navbar > ul li:last-child { background: none; -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; -o-border-radius: 0; border-radius: 0; } }
 @media only screen and (max-width: 768px) { .navbar > ul { margin-left: 0; } }
 .navbar > ul li.join_now { padding: 0px; }
 .navbar > ul li.join_now:hover > a { background: #5bbd73; }
 .navbar > ul li.join_now > a { -webkit-border-radius: 0 8px 8px 0; -moz-border-radius: 0 8px 8px 0; -ms-border-radius: 0 8px 8px 0; -o-border-radius: 0 8px 8px 0; border-radius: 0 8px 8px 0; display: block; border: 1px solid #42a35a; height: 59px; line-height: 56px; }
+@media only screen and (max-width: 768px) { .navbar > ul li.join_now > a { -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; -o-border-radius: 0; border-radius: 0; } }
 .navbar > ul li.join_now > a:hover, .navbar > ul li.join_now > a:active, .navbar > ul li.join_now > a:focus { background: #5bbd73; }
 .navbar > ul li.join_now .menu { display: none; }
 .navbar ul { color: #ffffff; }
