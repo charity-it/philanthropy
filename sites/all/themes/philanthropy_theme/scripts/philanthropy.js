@@ -1,6 +1,6 @@
 // set variable to use to detect certain browsers
-var ie6 = ($.browser.msie && /MSIE 6\.0/i.test(window.navigator.userAgent) && !/MSIE 7\.0/i.test(window.navigator.userAgent));
-var ie7 = ($.browser.msie && /MSIE 7\.0/i.test(window.navigator.userAgent));
+var ie6 = $('html').hasClass('ie6');
+var ie7 = $('html').hasClass('ie7');
 
 /*
  * Main Menu helpers
