@@ -1749,7 +1749,7 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 .branding { background: url("../images/site-logo.jpg") no-repeat 98% 0; height: 215px; position: relative; padding: 0 0 1.5625em 0; /*space for search*/ }
 @media only screen and (max-width: 768px) { .branding { background: none; } }
 
-#logo { position: absolute; top: 55px; left: 35px; }
+#logo { position: absolute; top: 55px; left: 25px; }
 
 #site-name a { font-size: 1.37500em; }
 
