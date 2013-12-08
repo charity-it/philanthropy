@@ -183,18 +183,21 @@ a {
 /* Header
 ++++++++++++++++++++++++ */
 
-#branding {
+.branding {
   background: url("../images/site-logo.jpg") no-repeat 98% 0;
   height: 215px;
   position: relative;
   padding: 0 0 1.5625em 0;
   /*space for search*/
+  @include respond(portrait-tablets){
+    background:none;
+  }
 }
 
 #logo {
   position: absolute;
   top: 55px;
-  left: 88px;
+  left: 35px;
 }
 
 #site-name a {
