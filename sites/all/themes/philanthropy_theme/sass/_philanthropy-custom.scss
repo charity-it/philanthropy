@@ -1441,12 +1441,18 @@ div {
   }
   .open-plan{
     padding:20px 30px;
+    @include respond(portrait-tablets){
+     padding:20px 0px;
+    }
     .block{
       margin-bottom:30px;
     }
   }
   .featured {
     padding: 20px 30px 20px 20px; 
+    @include respond(portrait-tablets){
+     padding:20px 0px;
+    }
     .block{
       background-color:#FBFAF9;
       border-top:4px solid #25A1CF;
