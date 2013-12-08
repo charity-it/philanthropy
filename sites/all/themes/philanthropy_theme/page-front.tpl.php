@@ -68,7 +68,7 @@
             </div>
             
 
-	    <?php echo philanthropy_theme_generate_topwidget(); ?>
+	           <?php echo philanthropy_theme_generate_topwidget(); ?>
 
                     
             <hr/>

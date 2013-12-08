@@ -87,7 +87,7 @@
 					<div id="main" class="row">
 						<!-- LEFT SIDEBAR -->
 							<?php if ($left): ?>
-							<div class="columns three first">
+							<div class="columns three first hide-title">
 								<?php if ($tg_subsite): ?>
 										<?php print $left; ?>
 								<?php else: ?>
