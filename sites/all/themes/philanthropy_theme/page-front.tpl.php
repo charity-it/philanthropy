@@ -65,7 +65,8 @@
             
             <div id="logo">
               <a href="<?php print $front_page; ?>" title="<?php print t('Go to Philanthropy New Zealand homepage'); ?>" rel="home">
-                <img src="<?php print $base_path . path_to_theme() ?>/images/site-title.jpg" alt="<?php print t('Go to Philanthropy New Zealand homepage'); ?>"/>
+								  <span style="font-family:eb garamond, times new roman, serif; font-size:38px; color:#254157">Philanthropy New Zealand</span><br>
+								  <span style="font-family:eb garamond, times new roman, serif; font-size:24px; color:#506060">T&#333;p&#363;tanga Tuku Aroha o Aotearoa</span>
               </a>       
             </div>
             
