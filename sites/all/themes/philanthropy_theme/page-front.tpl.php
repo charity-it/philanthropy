@@ -30,7 +30,7 @@
     <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/libs/gumby.init.js"></script>
     <script type="text/javascript" src="<?php echo $base_path . path_to_theme(); ?>/gumby/js/main.js"></script>
 
-    <link href="http://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=EB+Garamond&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
   </head>
 
