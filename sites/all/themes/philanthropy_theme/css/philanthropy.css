@@ -1771,7 +1771,7 @@ a:hover, a:active, a:focus { color: #25a1cf; text-decoration: none; }
 .form-submit { line-height: 20px; padding: 5px 15px; cursor: pointer; font-size: 14px; height: 31px; color: #fff; }
 
 /* Site search */
-.site-search { font-size: 1em; line-height: 1.5em; position: absolute; right: 14px; bottom: -15px; z-index: 1; }
+.site-search { font-size: 1em; line-height: 1.5em; position: absolute; right: 14px; bottom: 0; z-index: 1; }
 .site-search .search-theme-form { margin-bottom: 20px; }
 .site-search .search-theme-form label { position: absolute; font-weight: normal; color: #ffffff; }
 .site-search .search-theme-form input.form-text { width: 230px; }
@@ -2129,6 +2129,13 @@ div.status { color: #336600; background: #ccff88; border-color: #bbee77; }
 .menu-name-primary-links ul ul li a { border: none; }
 .menu-name-primary-links ul ul { margin: 0; padding-left: 20px; border-bottom: 1px solid #f1edea; }
 .menu-name-primary-links li a { display: block; padding: 8px 0; border-bottom: 1px solid #f1edea; }
+
+.header .social-icon { -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; width: 31px; height: 31px; display: inline-block; vertical-align: middle; overflow: hidden; padding-top: 4px; text-align: center; font-size: 20px; margin: 0; color: #4a4d50; background-color: #f2f2f2; border: 1px solid #ccc; }
+.header .social-icon:hover { -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; color: rgba(255, 255, 255, 0.8); }
+.header .social-icon.icon-facebook:hover { background-color: #3B5998; border: 1px solid #41536a; }
+.header .social-icon.icon-twitter:hover { background-color: #00ABF0; border: 1px solid #0087BD; }
+.header .social-icon.icon-video:hover { background-color: #C00000; border: 1px solid #7e0000; }
+.header .social-icon.icon-heart:hover { background-color: #FF6B00; border: 1px solid #aa4700; }
 
 /** Layout
 ---------------------------------

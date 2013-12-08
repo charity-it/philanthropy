@@ -571,41 +571,31 @@ function philanthropy_theme_filefield_file($file) {
 
 function philanthropy_theme_generate_topwidget() {
   $icons = array(
-    array('icon'     => 'twitter',
-          'url'      => 'https://www.twitter.com/philanthropynz', 
-          'title'    => 'Twitter',
-          'colour'   => '#8dcfd4',
-	  'bgcolour' => '#507578'
-	  ),
+    
     array('icon'     => 'facebook',
           'url'      => 'https://www.facebook.com/philanthropynz',
-          'title'    => 'Facebook',
-          'colour'   => '#84a7d6',
-	  'bgcolour' => '#4e637f'
+          'title'    => 'Facebook'
 	  ),
+    array('icon'     => 'twitter',
+          'url'      => 'https://www.twitter.com/philanthropynz', 
+          'title'    => 'Twitter'
+    ),
     array('icon'     => 'video',
           'url'      => 'https://www.youtube.com/philanthropynz',
-          'title'    => 'Youtube',
-          'colour'   => '#FF0000',
-	  'bgcolour' => '#A00000'
+          'title'    => 'Youtube'
 	  ),
     array('icon'     => 'heart',
           'url'      => 'https://www.facebook.com/giving.for.good',
-          'title'    => 'Giving for Good',
-          'colour'   => '#FFB000',
-	  'bgcolour' => '#D08000'
+          'title'    => 'Giving for Good'
 	  )
   );
-  $te .= '<div id="site-search" class="site-search" style="display:relative">
-  <span style="font-size:20px">
-';
+  $te .= '<div id="site-search" class="site-search">';
   foreach($icons as $icon) {
     $te .= '<a href="' . $icon['url'] . '" title="' . $icon['title'] . '">';
-    $te .= '<div style="border:1px solid black; border-radius:3px; width:31px; height:31px; display:inline-block; vertical-align:middle; overflow:hidden; padding-top:4px; text-align:center; background-color:' . $icon['bgcolour'] . '">';
-    $te .= '<i class="icon-' . $icon['icon'] . '" style="color:' . $icon['colour'] . '"></i>';
-    $te .= '</div></a> ';
+    $te .= '<i class="social-icon icon-' . $icon['icon'] . '"></i>';
+    $te .= '</a> ';
   }
-  $te .= '</span>
+  $te .= '
       <form action="https://www.google.com/search" class="search-theme-form" style="display:inline">
           <input class="input form-text" type="text" name="as_q" /> 
           <button class="form-submit btn medium default pretty"><span>Search</span></button>
