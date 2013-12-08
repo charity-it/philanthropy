@@ -332,12 +332,20 @@ a {
 .navbar {
   margin-top:20px;
   position: relative;
+  @include respond(portrait-tablets){
+    min-height: 70px;
+  }
+
   > ul {
     width: 100%;
     margin-left:5px;
     li:last-child {
        border-right:0;
     }
+    @include respond(portrait-tablets){
+      margin-left: 0;
+    }
+
     li.join_now{
       padding: 0px;
       &:hover{
@@ -1495,8 +1503,6 @@ div {
       border-bottom:1px solid darken(#FBFAF9, 5%);
     }
   }
-<<<<<<< HEAD
-=======
 }
 
 
@@ -1543,5 +1549,8 @@ div {
       border: 1px solid #aa4700;
     }
   }
->>>>>>> efdbdd2a60898c167abbb796cbe8fa7be2cb64b0
+}
+.block-title{
+  position:absolute;
+  top:-200%;
 }
