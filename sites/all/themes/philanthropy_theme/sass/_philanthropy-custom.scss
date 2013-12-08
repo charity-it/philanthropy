@@ -1495,10 +1495,15 @@ div {
   }
 }
 
-.menu-name-primary-links{
+.columns.three.mobile-bottom{
   @include respond(portrait-tablets){
-    display:none;
+    float:right;
+    width:100% !important; //override gumby
   }
+}
+
+.menu-name-primary-links{
+
   ul ul li a {
     border: none;
   }
