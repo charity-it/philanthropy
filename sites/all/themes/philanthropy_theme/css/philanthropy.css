@@ -2094,7 +2094,7 @@ div.status { color: #336600; background: #ccff88; border-color: #bbee77; }
 .view-conference-programme .drop div { float: left; width: 26px; height: 26px; margin-right: 6px; }
 .view-conference-programme .drop .up { background: url("../images/conference/programme-sprites.png") 0 0 no-repeat; }
 .view-conference-programme .drop .down { background: url("../images/conference/programme-sprites.png") -25px 0 no-repeat; }
-.view-conference-programme .sml-drop div { float: left; width: 18px; height: 18px; margin-right: 6px; }
+.view-conference-programme .sml-drop div { margin-top: 17px; float: left; width: 18px; height: 18px; margin-right: 6px; }
 .view-conference-programme .sml-drop .plus { background: url("../images/conference/programme-sprites.png") -51px 0 no-repeat; }
 .view-conference-programme .sml-drop .minus { background: url("../images/conference/programme-sprites.png") -69px 0 no-repeat; }
 
