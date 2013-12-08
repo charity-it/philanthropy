@@ -1,6 +1,6 @@
 // Your custom SCSS should be written here...
 
-input[type='text']{
+input[type='text'], input[type='email'] {
 	@extend .input;
 }
 input[type='radio']{
