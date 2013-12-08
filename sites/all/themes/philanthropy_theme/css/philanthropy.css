@@ -2143,8 +2143,6 @@ div.status { color: #336600; background: #ccff88; border-color: #bbee77; }
 .header .social-icon.icon-video:hover { background-color: #C00000; border: 1px solid #7e0000; }
 .header .social-icon.icon-heart:hover { background-color: #FF6B00; border: 1px solid #aa4700; }
 
-.block-title { position: absolute; top: -200%; }
-
 /** Layout
 ---------------------------------
 *  Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
