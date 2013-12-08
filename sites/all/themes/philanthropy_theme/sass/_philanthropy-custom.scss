@@ -303,6 +303,9 @@ a {
   right: 14px;
   bottom: 0;
   z-index: 1;
+  @include respond(portrait-tablets){
+    display:none;
+  }
   .search-theme-form {
     @extend .field;
     margin-bottom:20px;
