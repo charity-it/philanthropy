@@ -171,7 +171,7 @@ a {
   }
 }
 
-#content-top, #content-area, #sidebar-first .content, content-bottom, #footer {
+#content-top, .content-area, #sidebar-first .content, content-bottom, #footer {
   /*font-size: 0.75000em;*/
   font-size: 0.87500em;
 }
@@ -492,7 +492,7 @@ a {
 
 /* Content */
 
-#content-area {
+.content-area {
   h2 {
     font-size: 1.42857em;
   }
@@ -558,7 +558,7 @@ a {
 
 /* special case for links page */
 
-#content-area div.summary {
+.content-area div.summary {
   margin-bottom: 1em;
 }
 
@@ -589,7 +589,7 @@ a {
   p {
     font-size: 1em;
   }
-  #content-area .attachments {
+  .content-area .attachments {
     h3 {
       font-family: "Arial Light", Arial, sans-serif;
       padding: 20px 0 10px 0;
@@ -683,14 +683,15 @@ a {
   }
 }
 
-#content-area {
+.content-area {
   .view-thoughtful-giving .views-field-upload-fid .field-content ul li {
     list-style-image: url('/sites/all/modules/contrib/filefield/icons/application-pdf.png');
   }
   table {
     th, td {
       border: 1px solid #cccccc;
-      font-size: 0.85714em;
+      font-size: 1em;
+      line-height:1.5em;
       padding: 3px;
       text-align: left;
     }
@@ -767,7 +768,7 @@ ul.pager {
 /* Views Filters and Site Search
 ++++++++++++++++++++++++ */
 
-#content-top #block-views--exp-Resources-page_1, #content-area .search-form {
+#content-top #block-views--exp-Resources-page_1, .content-area .search-form {
   overflow: hidden;
   background: #d1e7ef;
   border: 1px solid #8bc9df;
@@ -793,7 +794,7 @@ ul.pager {
   }
 }
 
-#content-area .search-form a {
+.content-area .search-form a {
   color: #333333;
 }
 
@@ -834,7 +835,7 @@ p.search-info {
   }
 }
 
-#content-area .calendar-calendar {
+.content-area .calendar-calendar {
   ul {
     list-style: none;
     padding-left: 0;
@@ -858,6 +859,7 @@ p.search-info {
     padding-right: 10px;
   }
   .block-menu_block {
+
     li {
       border-top: 1px solid #e8e8e8;
       li {
@@ -1504,11 +1506,14 @@ div {
 }
 
 .menu-name-primary-links{
-
+  ul{
+    list-style:none;
+  }
   ul ul li a {
     border: none;
   }
   ul ul{
+    list-style:none;
     margin:0;
     padding-left: 20px;
     border-bottom:1px solid darken(#FBFAF9, 5%);
